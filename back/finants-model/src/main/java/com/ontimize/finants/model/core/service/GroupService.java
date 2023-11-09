@@ -31,11 +31,13 @@ public class GroupService implements IGroupService {
     private DefaultOntimizeDaoHelper daoHelper;
     private final MemberGroupService memberGroupService;
     private final MovementService movementService;
+    private final UserService userService;
 
     @Autowired
-    public GroupService(MemberGroupService memberGroupService, MovementService movementService) {
+    public GroupService(MemberGroupService memberGroupService, MovementService movementService, UserService userService) {
         this.memberGroupService = memberGroupService;
         this.movementService = movementService;
+        this.userService = userService;
     }
 
     @Override
@@ -55,16 +57,6 @@ public class GroupService implements IGroupService {
         addOwnerToGroup(result);
 
         return result;
-    }
-
-    private void addOwnerToGroup(EntityResult result) {
-        Object objId = result.get(GroupDao.ATTR_GR_ID);
-        Integer groupId = (Integer)objId;
-        Map<String, Object> attrMapMembers = new HashMap<>();
-        attrMapMembers.put(MemberGroupDao.ATTR_GR_ID, groupId);
-        attrMapMembers.put(MemberGroupDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
-        attrMapMembers.put(MemberGroupDao.ATTR_IS_ADMIN, true);
-        this.memberGroupService.memberGroupInsert(attrMapMembers);
     }
 
     @Override
@@ -87,6 +79,12 @@ public class GroupService implements IGroupService {
     public EntityResult getGroupMembersQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.groupDao, keyMap, attrList, GroupDao.QUERY_GET_GROUP_MEMBERS);
     }
+
+    @Override
+    public EntityResult getAvailableMembersQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        return userService.getAvailableUsersForGroupQuery(keyMap, attrList);
+    }
+
     @Override
     public EntityResult getGroupMovements(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         List<String> attrList = new ArrayList<>();
@@ -165,6 +163,16 @@ public class GroupService implements IGroupService {
         return this.memberGroupService.memberGroupDelete(keyMap);
     }
 
+    @Override
+    public EntityResult getGroupMovementsByUser(Map<String, Object> keyMap, String user){
+        keyMap.put(GroupDao.ATTR_USER_, user);
+        return getGroupMovements(keyMap);
+    }
+
+    private EntityResult getAvailableUsersForGroupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        return this.userService.getAvailableUsersForGroupQuery(keyMap, attrList);
+    }
+
     private EntityResult getMovementsFromMgId(Map<String, Object> keyMap){
         EntityResult eUser = this.memberGroupService.getMemberByMgId(keyMap);
         List<String> user = (List<String>)eUser.get(GroupDao.ATTR_USER_);
@@ -173,13 +181,16 @@ public class GroupService implements IGroupService {
         Map<String, Object> keyMapMovs = new HashMap<>();
         keyMapMovs.put(GroupDao.ATTR_GR_ID, group.get(0));
 
-       return getGroupMovementsByUser(keyMapMovs, user.get(0));
+        return getGroupMovementsByUser(keyMapMovs, user.get(0));
     }
 
-    @Override
-    public EntityResult getGroupMovementsByUser(Map<String, Object> keyMap, String user){
-        keyMap.put(GroupDao.ATTR_USER_, user);
-        return getGroupMovements(keyMap);
+    private void addOwnerToGroup(EntityResult result) {
+        Integer groupId = (Integer)result.get(GroupDao.ATTR_GR_ID);
+        Map<String, Object> attrMapMembers = new HashMap<>();
+        attrMapMembers.put(MemberGroupDao.ATTR_GR_ID, groupId);
+        attrMapMembers.put(MemberGroupDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
+        attrMapMembers.put(MemberGroupDao.ATTR_IS_ADMIN, true);
+        this.memberGroupService.memberGroupInsert(attrMapMembers);
     }
 
     public BigDecimal getUserTotalExpense(Map<String, Object> keyMap, String user){

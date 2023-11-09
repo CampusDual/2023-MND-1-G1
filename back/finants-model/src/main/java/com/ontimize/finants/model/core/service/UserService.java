@@ -1,15 +1,12 @@
 package com.ontimize.finants.model.core.service;
 
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.*;
 
+import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.ontimize.finants.api.core.service.IUserService;
@@ -49,6 +46,11 @@ public class UserService implements IUserService {
 		Map<Object, Object> attrMap = new HashMap<>();
 		attrMap.put("user_down_date", new Timestamp(Calendar.getInstance().getTimeInMillis()));
 		return this.daoHelper.update(this.userDao, attrMap, keyMap);
+	}
+
+	@Override
+	public EntityResult getAvailableUsersForGroupQuery(Map<?, ?> keyMap, List<?> attrList) throws OntimizeJEERuntimeException {
+		return this.daoHelper.query(this.userDao, keyMap, attrList, UserDao.QUERY_AVAILABLE_USERS);
 	}
 
 }

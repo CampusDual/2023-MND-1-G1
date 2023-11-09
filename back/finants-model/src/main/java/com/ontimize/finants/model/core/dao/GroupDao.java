@@ -19,4 +19,5 @@ public class GroupDao extends OntimizeJdbcDaoSupport {
     public static final String QUERY_GET_GROUP_MEMBERS = "getGroupMembers";
     public static final String QUERY_GET_GROUP_MEMBERS_WITH_BALANCE = "getGroupMembersWithBalance";
     public static final String QUERY_GET_GROUP_MOVEMENTS = "getGroupMovements";
+    public static final String QUERY_GET_AVAILABLE_USERS_FOR_GROUP = "getAvailableUsersForGroup";
 }

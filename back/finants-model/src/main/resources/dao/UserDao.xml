@@ -118,31 +118,62 @@
         <Query id="getTotalIncomesForCurrentMounth">
             <Sentence>
                 <![CDATA[
-                WITH TOTAL_INCOMES AS
-                (
-                SELECT
-                SUM(IN_AMOUNT) AS BALANCE,
-                USER_,
-                EXTRACT(MONTH FROM IN_DATE) as  IN_MONTH,
-                 EXTRACT(YEAR FROM IN_DATE) as IN_YEAR
-                FROM
-                INCOMES
-                GROUP BY
-                USER_,
-                EXTRACT(MONTH FROM IN_DATE),
-                EXTRACT(YEAR FROM IN_DATE)
+                    WITH TOTAL_INCOMES AS
+                    (
+                        SELECT
+                            SUM(IN_AMOUNT) AS BALANCE,
+                            USER_,
+                            EXTRACT(MONTH FROM IN_DATE) as  IN_MONTH,
+                            EXTRACT(YEAR FROM IN_DATE) as IN_YEAR
+                        FROM
+                            INCOMES
+                        GROUP BY
+                            USER_,
+                            EXTRACT(MONTH FROM IN_DATE),
+                            EXTRACT(YEAR FROM IN_DATE)
 
-                )
-                SELECT
-                   #COLUMNS#
-                 FROM
-                    TOTAL_INCOMES
-                 #WHERE#
-
-        ]]>
+                    )
+                    SELECT
+                       #COLUMNS#
+                     FROM
+                        TOTAL_INCOMES
+                     #WHERE#
+                ]]>
             </Sentence>
         </Query>
+        <Query id="getAvailableUsersForGroup">
+            <Sentence>
+                <![CDATA[
+                    WITH GROUP_USERS AS (
+                        SELECT
+                            t.USER_
+                        FROM
+                            MEMBER_GROUP mg
+                        INNER JOIN
+                            TUSER t
+                        ON
+                            t.USER_ = mg.USER_
+                        #WHERE#
+                    ),
+                    AVAILABLE_USERS AS (
+                        SELECT
+                            u.USER_,
+                            u.NAME,
+                            u.SURNAME,
+                            u.EMAIL
+                        FROM
+                            TUSER u
+                        WHERE
+                            u.USER_ NOT IN (
+                                SELECT * FROM GROUP_USERS
+                            )
+                        ORDER BY
+                            u.USER_ ASC
+                    )
 
-
+                    SELECT #COLUMNS# FROM AVAILABLE_USERS au #ORDER#;
+                ]]>
+            </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>

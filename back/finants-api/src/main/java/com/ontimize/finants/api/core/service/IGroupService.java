@@ -13,6 +13,9 @@ public interface IGroupService {
     public EntityResult groupDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     EntityResult getGroupsByMemberQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
     EntityResult getGroupMembersQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+
+    EntityResult getAvailableMembersQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+
     EntityResult getGroupMovements(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     EntityResult getGroupMembersWithBalanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
     EntityResult getGroupMovementsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
