@@ -8,8 +8,8 @@
         <div fxFlex fxLayout="column" fxLayoutAlign="space-around stretch">
           <div class="inputs-container-form">
             <o-date-input attr="MOV_DATE" label="DATE" required="yes" fxFlex="45"></o-date-input>
-            <o-currency-input attr="MOV_AMOUNT" label="AMOUNT" [validators]="validatorAmount" currency-symbol="€"
-              locale="es-ES" required="yes" fxFlex="45">
+            <o-currency-input attr="MOV_AMOUNT" label="AMOUNT" [validators]="validatorAmount" required="yes"
+              fxFlex="45">
               <o-validator error-name="negativeNumber" error-text="NONEGATIVE" required="yes"></o-validator>
             </o-currency-input>
           </div>

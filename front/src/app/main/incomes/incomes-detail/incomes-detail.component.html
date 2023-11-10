@@ -1,14 +1,13 @@
 <o-form fxFill #incomeTable class="text-detail-incomes" attr="incomesDetailsTable" service="movements"
   entity="incomesForCategories" header-actions="U;D" keys="MOV_ID" show-header="true" parent-keys="MOV_ID"
-  keys-sql-types="INTEGER" label-header="INCOMES_DETAILS" show-header-navigation="yes">
+  keys-sql-types="INTEGER" label-header="INCOMES_DETAILS" show-header-navigation="yes" (onUpdate)="onUpdate()">
   <o-column>
     <o-row>
       <div fxFlex fxLayout="column" fxLayoutAlign="space-around stretch">
         <div class="inputs-container-form">
           <o-date-input class="text-detail-incomes" attr="MOV_DATE" label="DATE" fxFlex="45" content-align="center"
             required="yes"></o-date-input>
-          <o-currency-input attr="MOV_AMOUNT" label="AMOUNT" [validators]="validatorAmount" currency-symbol="€"
-            locale="es-ES" required="yes" fxFlex="45">
+          <o-currency-input attr="MOV_AMOUNT" label="AMOUNT" [validators]="validatorAmount" required="yes" fxFlex="45">
             <o-validator error-name="negativeNumber" error-text="NONEGATIVE" required="yes"></o-validator>
           </o-currency-input>
         </div>

@@ -251,7 +251,8 @@ mat-dialog-container {
   background-color: rgba(192, 145, 145);
 }
 .form-filter-container-expense .mat-input-element,
-.form-filter-container-expense .mat-input-element {
+.form-filter-container-expense .mat-input-element,
+.expenses-details-table .mat-input-element {
   caret-color: rgba(192, 145, 145) !important;
 }
 .form-filter-container-expense
@@ -259,16 +260,11 @@ mat-dialog-container {
   .mat-form-field-label,
 .form-filter-container-expense
   .mat-form-field.mat-focused.mat-primary
-  .mat-select-arrow {
-  color: rgba(192, 145, 145) !important;
-}
-
+  .mat-select-arrow,
 .expense-table .mat-form-field-outline {
   color: rgba(192, 145, 145) !important;
 }
-.expense-table .mat-input-element {
-  caret-color: var(--var-expense-color) !important;
-}
+
 .goal-table .mat-form-field-outline,
 .formNewGoal .mat-form-field.mat-focused.mat-primary .mat-select-arrow,
 .formNewGoal .mat-focused .mat-form-field-required-marker {
