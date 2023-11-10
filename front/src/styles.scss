@@ -125,7 +125,8 @@ mat-dialog-container {
 .formButtonIncome .o-button button.mat-raised-button:hover {
   background-color: rgba(145, 192, 158, 0.2) !important;
 }
-.formFilterExpenses .o-button button.mat-raised-button {
+.formFilterExpenses .o-button button.mat-raised-button,
+.formBtnFilterExpenses .o-button button.mat-raised-button {
   color: var(--var-expense-color);
 }
 .formButtonIncome .o-button button.mat-raised-button {
@@ -164,7 +165,8 @@ mat-dialog-container {
   o-form-toolbar
   button:not([disabled]).mat-button-base:hover,
 .formFilterExpenses .o-button button.mat-raised-button:hover,
-.expenses-details-table button:not([disabled]).mat-button-base:hover {
+.expenses-details-table button:not([disabled]).mat-button-base:hover,
+.formBtnFilterExpenses .o-button button.mat-raised-button:hover {
   background-color: var(--var-expenses-hover) !important;
 }
 
@@ -227,4 +229,66 @@ mat-dialog-container {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.expenses-details-table .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: var(--var-expense-color) !important;
+}
+.group-detail-table .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: var(--var-normal-color) !important;
+}
+.group-detail-table .mat-form-field.mat-focused {
+  color: var(--var-normal-color);
+}
+.formNewGoal .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: var(--var-goals-color) !important;
+}
+.formNewGoal .mat-form-field.mat-focused .mat-form-field-label {
+  color: var(--var-goals-color);
+}
+.form-filter-container-expense
+  .mat-form-field.mat-focused
+  .mat-form-field-ripple {
+  background-color: rgba(192, 145, 145);
+}
+.form-filter-container-expense .mat-input-element,
+.form-filter-container-expense .mat-input-element {
+  caret-color: rgba(192, 145, 145) !important;
+}
+.form-filter-container-expense
+  .mat-form-field.mat-focused
+  .mat-form-field-label,
+.form-filter-container-expense
+  .mat-form-field.mat-focused.mat-primary
+  .mat-select-arrow {
+  color: rgba(192, 145, 145) !important;
+}
+
+.expense-table .mat-form-field-outline {
+  color: rgba(192, 145, 145) !important;
+}
+.expense-table .mat-input-element {
+  caret-color: var(--var-expense-color) !important;
+}
+.goal-table .mat-form-field-outline,
+.formNewGoal .mat-form-field.mat-focused.mat-primary .mat-select-arrow,
+.formNewGoal .mat-focused .mat-form-field-required-marker {
+  color: var(--var-goals-color) !important;
+}
+.goal-table .mat-input-element,
+.formNewGoal .mat-input-element {
+  caret-color: var(--var-goals-color) !important;
+}
+.group-detail-table .mat-form-field.mat-focused .mat-form-field-label,
+.group-detail-table .mat-focused .mat-form-field-required-marker,
+.group-detail-table .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: var(--var-normal-color) !important;
+}
+.group-table .mat-form-field-outline {
+  color: var(--var-normal-color) !important;
+}
+.group-table .mat-input-element {
+  caret-color: var(--var-normal-color) !important;
+}
+.o-table-quickfilter .mat-form-field-prefix {
+  display: none !important;
 }

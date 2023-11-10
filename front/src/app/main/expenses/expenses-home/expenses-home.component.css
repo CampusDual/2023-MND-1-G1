@@ -7,26 +7,24 @@
 }
 
 .table-and-filter-container {
-  height: 100%;
+  width: 100%;
+  overflow-x: auto;
   display: flex;
   flex-direction: column;
   flex: 1;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px 0 rgba(192, 145, 145, 1);
 }
-.form-filter-container {
+.form-filter-container-expense {
   display: flex;
   flex: 1;
-  margin-bottom: -10px;
   max-height: 140px;
   overflow: auto;
-  border-radius: 10px 10px 0px 0px;
-  box-shadow: 2px -4px 5px 0 rgba(192, 145, 145, 1);
 }
 
 .expense-table {
   height: 600px;
   flex: 2;
-  border-radius: 0px 0px 10px 10px;
-  box-shadow: 2px 5px 5px 0 rgba(192, 145, 145, 1);
 }
 .input-container {
   display: flex;
@@ -34,11 +32,12 @@
   justify-content: space-evenly;
   margin-top: 10px;
 }
-.formFilterExpenses {
+.formBtnFilterExpenses {
   display: flex;
   align-items: end;
   gap: 10px;
 }
+
 @media (max-width: 1182px) {
   .expenses-main-container {
     grid-template-columns: 1fr;

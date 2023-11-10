@@ -17,7 +17,6 @@ import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 })
 export class IncomesNewComponent implements OnInit {
   public userHasMadeChanges: boolean = false;
-  valor: number = 0;
   validatorAmount: ValidatorFn[] = [];
   @ViewChild("dateInput", { static: false }) fieldFecha: ODateInputComponent;
   @ViewChild("newIncome", { static: false }) oForm: OFormComponent;
@@ -46,9 +45,7 @@ export class IncomesNewComponent implements OnInit {
   public closeDialog(event: any) {
     this.dialogRef.close();
   }
-  onCancel() {
-    this.dialogRef.close();
-  }
+
   public addCurrentDate(event) {
     if (event === 1) {
       this.fieldFecha.setValue(
@@ -86,5 +83,8 @@ export class IncomesNewComponent implements OnInit {
           }
         });
     }
+  }
+  onInsert() {
+    this.dialogRef.close();
   }
 }
