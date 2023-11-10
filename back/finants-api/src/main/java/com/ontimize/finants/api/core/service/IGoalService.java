@@ -12,4 +12,6 @@ public interface IGoalService {
     public EntityResult goalUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult goalDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult getGoalsCategoryWithNameQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+    public EntityResult getGoalsCategoryWithNameUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
+    public EntityResult getGoalsCategoryWithNameDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 }

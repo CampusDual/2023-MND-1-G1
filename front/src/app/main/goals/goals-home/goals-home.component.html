@@ -7,7 +7,7 @@
       <h2>{{'TOTAL_EXPENSES_CATEGORIES' | oTranslate }}</h2>
     </div>
   </div>
-  <o-form-layout-manager mode="dialog">
+  <o-form-layout-manager mode="dialog" (onUpdate)="onUpdate()">
     <o-form-layout-dialog-options width="fit-content" height="450px"></o-form-layout-dialog-options>
     <div class="goals-main-container">
       <div class="table-container">

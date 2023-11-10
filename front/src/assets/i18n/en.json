@@ -76,5 +76,6 @@
   "GOALS_LIST": "Goals list",
   "TOTAL_BALANCE": "Total balance",
   "TOTAL_INCOME": "Total income",
-  "TOTAL_EXPENSE": "Total expense"
+  "TOTAL_EXPENSE": "Total expense",
+  "GOAL_DETAIL": "Target detail"
 }

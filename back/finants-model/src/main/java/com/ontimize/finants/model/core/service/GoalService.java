@@ -37,7 +37,9 @@ public class GoalService implements IGoalService {
 
     @Override
     public EntityResult goalUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
-        return this.daoHelper.update(this.goalDao,attrMap, keyMap);
+        Map<String, Object> attrMapFilterUser = new HashMap<>(attrMap);
+        attrMapFilterUser.put(GoalDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.update(this.goalDao,attrMapFilterUser, keyMap);
     }
 
     @Override
@@ -51,6 +53,16 @@ public class GoalService implements IGoalService {
         keyMapFilterUser.put(GoalDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.goalDao, keyMapFilterUser, attrList,GoalDao.QUERY_GET_GOALS_CATEGORY_WITH_NAME);
 
+    }
+
+    @Override
+    public EntityResult getGoalsCategoryWithNameUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        return this.goalUpdate(attrMap, keyMap);
+    }
+
+    @Override
+    public EntityResult getGoalsCategoryWithNameDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        return this.daoHelper.delete(this.goalDao, keyMap);
     }
 
 }

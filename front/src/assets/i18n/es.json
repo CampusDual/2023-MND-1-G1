@@ -84,5 +84,6 @@
   "GOALS_NAME": "Nombre del objetivo",
   "GOALS_NAMES": "Nombres de los objetivos",
   "GOALS_LIST": "Lista de objetivos",
-  "GOALS_FORM": "Formulario de objetivos"
+  "GOALS_FORM": "Formulario de objetivos", 
+  "GOAL_DETAIL": "Detalle del objetivo"
 }

@@ -112,6 +112,14 @@ mat-dialog-container {
 .text-detail-incomes svg {
   color: var(--var-income-color);
 }
+.text-detail-goals{
+  -webkit-text-fill-color: var(--var-goals-color);
+  
+}
+
+.text-detail-goals svg{
+  color: var(--var-goals-color);
+}
 
 .formFilter .o-button button.mat-raised-button {
   color: rgba(145, 192, 158, 1);
