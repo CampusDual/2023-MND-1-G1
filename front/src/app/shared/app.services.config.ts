@@ -20,4 +20,7 @@ export const SERVICE_CONFIG: Object = {
   goals: {
     path: "/goals",
   },
+  app:{
+    path: "/app/public",
+  }
 };

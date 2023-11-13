@@ -85,5 +85,13 @@
   "GOALS_NAMES": "Nombres de los objetivos",
   "GOALS_LIST": "Lista de objetivos",
   "GOALS_FORM": "Formulario de objetivos", 
-  "GOAL_DETAIL": "Detalle del objetivo"
+  "GOAL_DETAIL": "Detalle del objetivo",
+  "REGISTER": "Registrarme ahora", 
+  "DUPLICATE_KEY": "Este nombre de usuario ya existe, introduce uno diferente",
+  "NONSPECIFIC_ERROR_INSERTION": "Ha ocurrido un error. Pruebe de nuevo, en caso de que el problema persista, por favor, contacte con el soporte de FinAnts.", 
+  "ERROR_LENGTH_PASSWORD": "La contraseña debe tener al menos 8 caracteres.", 
+  "ERROR_FORMAT_EMAIL": "El formato de email no es válido. Formato válido: example@example.com", 
+  "NAME": "Nombre", 
+  "LASTNAME": "Apellido", 
+  "EMAIL": "Correo electrónico"
 }
