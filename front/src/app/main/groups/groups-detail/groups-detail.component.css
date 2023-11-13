@@ -1,6 +1,6 @@
 .group-details-table-container {
   display: flex;
-  height: 620px;
+  /*height: 620px;*/
   gap: 20px;
 }
 .text-detail-group {

@@ -15,9 +15,13 @@ public class GroupDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_GR_CREATION_DATE = "GR_CREATION_DATE";
     public static final String ATTR_GR_CHOOSE_MEMBERS = "GR_CHOOSE_MEMBERS";
     public static final String ATTR_MEMBER_BALANCE = "MEMBER_BALANCE";
+    public static final String ATTR_PAYER = "PAYER";
+    public static final String ATTR_RECIPIENT = "RECIPIENT";
+    public static final String ATTR_AMOUNT = "AMOUNT";
     public static final String QUERY_GET_GROUPS_BY_MEMBER = "getGroupsByMember";
     public static final String QUERY_GET_GROUP_MEMBERS = "getGroupMembers";
     public static final String QUERY_GET_GROUP_MEMBERS_WITH_BALANCE = "getGroupMembersWithBalance";
     public static final String QUERY_GET_GROUP_MOVEMENTS = "getGroupMovements";
     public static final String QUERY_GET_AVAILABLE_USERS_FOR_GROUP = "getAvailableUsersForGroup";
+    public static final String QUERY_GET_SETTLING_MOVEMENTS = "settlingMovements";
 }

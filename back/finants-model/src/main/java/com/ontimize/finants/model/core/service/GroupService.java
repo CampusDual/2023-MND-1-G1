@@ -4,6 +4,8 @@ import com.ontimize.finants.api.core.service.IGroupService;
 import com.ontimize.finants.model.core.dao.GroupDao;
 import com.ontimize.finants.model.core.dao.MemberGroupDao;
 import com.ontimize.finants.model.core.dao.MovementDao;
+import com.ontimize.finants.model.debtSetting.GroupBalance;
+import com.ontimize.finants.model.debtSetting.User;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.dto.EntityResultMapImpl;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
@@ -169,8 +171,30 @@ public class GroupService implements IGroupService {
         return getGroupMovements(keyMap);
     }
 
-    private EntityResult getAvailableUsersForGroupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+    @Override
+    public EntityResult getAvailableUsersForGroupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         return this.userService.getAvailableUsersForGroupQuery(keyMap, attrList);
+    }
+
+    @Override
+    public EntityResult settlingMovementsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        //EntityResult groupMovements = getGroupMovements(keyMap);
+        List<String> membersAttrList = new ArrayList<>();
+        membersAttrList.add(GroupDao.ATTR_USER_);
+        EntityResult erGroupMembers = getGroupMembersQuery(keyMap, membersAttrList);
+
+        List<User> members = new ArrayList<>();
+        for (String userName : (List<String>)erGroupMembers.get(GroupDao.ATTR_USER_) ){
+            members.add(new User(userName));
+        }
+
+        for(User m : members) {
+            m.setMovementsFromEntityResult(getGroupMovementsByUser(keyMap, m.getName()));
+        }
+
+        GroupBalance groupBalance = new GroupBalance((ArrayList<User>) members);
+
+        return groupBalance.settlingBalance();
     }
 
     private EntityResult getMovementsFromMgId(Map<String, Object> keyMap){
@@ -202,7 +226,7 @@ public class GroupService implements IGroupService {
     private BigDecimal calcBalance(List<BigDecimal> listMovAmount)  {
         if(listMovAmount == null || listMovAmount.isEmpty()){
             return BigDecimal.ZERO;
-        }else{
+        } else {
             BigDecimal aux = listMovAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
             return aux;
         }
