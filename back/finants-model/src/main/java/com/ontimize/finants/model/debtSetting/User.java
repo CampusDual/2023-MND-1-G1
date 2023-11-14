@@ -9,7 +9,7 @@ import java.util.List;
 
 public class User {
     private String name;
-    private List<Movement> movements = new ArrayList<>();
+    private final List<Movement> movements = new ArrayList<>();
     private BigDecimal balance = BigDecimal.ZERO;
 
     public User(String name) {
@@ -38,7 +38,7 @@ public class User {
 
     public void setMovementsFromEntityResult(EntityResult entityResult) {
         try {
-            Integer movementCount = ((List<BigDecimal>) entityResult.get(MovementDao.ATTR_MOV_AMOUNT)).size();
+            int movementCount = ((List<Object>) entityResult.get(MovementDao.ATTR_MOV_AMOUNT)).size();
 
             for (int i = 0; i < movementCount; i++){
                 String concept = (String)entityResult.getRecordValues(i).get(MovementDao.ATTR_MOV_CONCEPT);
@@ -49,14 +49,16 @@ public class User {
             }
 
             this.calculateBalance();
-        } catch (Exception ex) {
 
+        } catch (Exception ex) {
+            System.err.println(ex.getLocalizedMessage());
         }
     }
 
     private void calculateBalance(){
         if (!this.movements.isEmpty()) {
             BigDecimal totalMovements = BigDecimal.ZERO;
+
             for (Movement m : this.movements) {
                 totalMovements = totalMovements.add(m.getAmount());
             }

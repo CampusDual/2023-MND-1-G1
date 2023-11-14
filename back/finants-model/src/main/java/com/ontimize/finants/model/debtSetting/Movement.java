@@ -3,7 +3,7 @@ package com.ontimize.finants.model.debtSetting;
 import java.math.BigDecimal;
 
 public class Movement {
-    private BigDecimal amount = BigDecimal.ZERO;
+    private BigDecimal amount;
     private String concept;
 
     public Movement(BigDecimal amount) {

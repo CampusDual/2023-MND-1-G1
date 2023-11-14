@@ -177,7 +177,7 @@ public class GroupService implements IGroupService {
     }
 
     @Override
-    public EntityResult getSettlingMovementsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+    public EntityResult settlingMovementsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         //EntityResult groupMovements = getGroupMovements(keyMap);
         List<String> membersAttrList = new ArrayList<>();
         membersAttrList.add(GroupDao.ATTR_USER_);

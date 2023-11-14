@@ -53,7 +53,7 @@
         </o-list>
         -->
 
-        <o-list #list attr="settlingList" service="groups" entity="getSettlingMovements" parent-keys="GR_ID"
+        <o-list #list attr="settlingList" service="groups" entity="settlingMovements" parent-keys="GR_ID"
         columns="PAYER;RECIPIENT;AMOUNT" delete-button="no" quick-filter="no">
           <o-list-item *ngFor="let row of list.dataArray">
             <o-list-item-text #item title="{{ row.PAYER }}" primary-text="{{'GR_HAS_TO_PAY' | oTranslate}} {{row.AMOUNT}}€ {{'GR_TO' | oTranslate}} {{row.RECIPIENT}}"></o-list-item-text>
