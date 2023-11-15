@@ -7,6 +7,7 @@ import { GroupsDetailComponent } from "./groups-detail/groups-detail.component";
 import { AddMemberComponent } from "./groups-detail/add-member/add-member.component";
 import { GroupsNewComponent } from "./groups-new/groups-new.component";
 import { MovementColumnRendererComponent } from "./groups-detail/movement-column-renderer/movement-column-renderer.component";
+import { GroupDetailUserColorComponent } from "./groups-detail/group-detail-user-color/group-detail-user-color.component";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MovementColumnRendererComponent } from "./groups-detail/movement-column
     AddMemberComponent,
     GroupsNewComponent,
     MovementColumnRendererComponent,
+    GroupDetailUserColorComponent,
   ],
   imports: [CommonModule, OntimizeWebModule, GroupsRoutingModule],
 })

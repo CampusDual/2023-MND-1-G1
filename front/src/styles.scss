@@ -112,12 +112,11 @@ mat-dialog-container {
 .text-detail-incomes svg {
   color: var(--var-income-color);
 }
-.text-detail-goals{
+.text-detail-goals {
   -webkit-text-fill-color: var(--var-goals-color);
-  
 }
 
-.text-detail-goals svg{
+.text-detail-goals svg {
   color: var(--var-goals-color);
 }
 
@@ -250,9 +249,13 @@ mat-dialog-container {
 .formNewGoal .mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: var(--var-goals-color) !important;
 }
-.formNewGoal .mat-form-field.mat-focused .mat-form-field-label {
-  color: var(--var-goals-color);
+.o-table-quickfilter .mat-form-field-prefix {
+  display: none !important;
 }
+.o-table-quickfilter .mat-form-field-outline {
+  color: transparent !important;
+}
+
 .form-filter-container-expense
   .mat-form-field.mat-focused
   .mat-form-field-ripple {
@@ -260,7 +263,8 @@ mat-dialog-container {
 }
 .form-filter-container-expense .mat-input-element,
 .form-filter-container-expense .mat-input-element,
-.expenses-details-table .mat-input-element {
+.expenses-details-table .mat-input-element,
+.expense-table .mat-input-element {
   caret-color: rgba(192, 145, 145) !important;
 }
 .form-filter-container-expense
@@ -269,30 +273,89 @@ mat-dialog-container {
 .form-filter-container-expense
   .mat-form-field.mat-focused.mat-primary
   .mat-select-arrow,
-.expense-table .mat-form-field-outline {
+.expenses-details-table
+  .mat-form-field.mat-focused.mat-primary
+  .mat-select-arrow {
   color: rgba(192, 145, 145) !important;
 }
+.expense-table .o-table-quickfilter .mat-form-field-outline {
+  border: 1px solid var(--var-expense-color);
+  border-radius: 10px !important;
+}
+.expense-table
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline,
+.expense-table
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled)
+  .mat-form-field-flex:hover
+  .mat-form-field-outline {
+  border: 2px solid var(--var-expense-color);
+}
 
-.goal-table .mat-form-field-outline,
+.income-table .o-table-quickfilter .mat-form-field-outline {
+  color: transparent !important;
+  border: 1px solid var(--var-income-color);
+  border-radius: 10px !important;
+}
+
+.income-table
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline,
+.income-table
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled)
+  .mat-form-field-flex:hover
+  .mat-form-field-outline {
+  border: 2px solid var(--var-income-color);
+  border-radius: 10px !important;
+}
+
 .formNewGoal .mat-form-field.mat-focused.mat-primary .mat-select-arrow,
-.formNewGoal .mat-focused .mat-form-field-required-marker {
+.formNewGoal .mat-focused .mat-form-field-required-marker,
+.formNewGoal .mat-form-field.mat-focused .mat-form-field-label {
   color: var(--var-goals-color) !important;
 }
 .goal-table .mat-input-element,
 .formNewGoal .mat-input-element {
   caret-color: var(--var-goals-color) !important;
 }
+.goal-table .o-table-quickfilter .mat-form-field-outline {
+  border: 1px solid var(--var-goals-color);
+  border-radius: 10px !important;
+}
+.goal-table
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline,
+.goal-table
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled)
+  .mat-form-field-flex:hover
+  .mat-form-field-outline {
+  border: 2px solid var(--var-goals-color);
+  border-radius: 10px !important;
+}
+//Flechas de combo group, focus...
 .group-detail-table .mat-form-field.mat-focused .mat-form-field-label,
 .group-detail-table .mat-focused .mat-form-field-required-marker,
 .group-detail-table .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
   color: var(--var-normal-color) !important;
 }
-.group-table .mat-form-field-outline {
-  color: var(--var-normal-color) !important;
+.group-table .o-table-quickfilter .mat-form-field-outline {
+  color: transparent !important;
+  border: 1px solid var(--var-normal-color);
+  border-radius: 10px !important;
 }
+.group-table
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline,
+.group-table
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled)
+  .mat-form-field-flex:hover
+  .mat-form-field-outline {
+  border: 2px solid var(--var-normal-color);
+  border-radius: 10px !important;
+}
+
+///////////
+
 .group-table .mat-input-element {
   caret-color: var(--var-normal-color) !important;
-}
-.o-table-quickfilter .mat-form-field-prefix {
-  display: none !important;
 }
