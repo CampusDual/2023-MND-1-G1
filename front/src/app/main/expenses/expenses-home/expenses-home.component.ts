@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ElementRef} from "@angular/core";
 import * as moment from "moment";
 import { Expression, FilterExpressionUtils } from "ontimize-web-ngx";
-import { ViewChildren, QueryList } from "@angular/core";
+import { ViewChildren, QueryList , ViewChild} from "@angular/core";
+import { DiscreteBarChartConfiguration, OChartComponent } from "ontimize-web-ngx-charts";
 
 @Component({
   selector: "app-expenses-home",
@@ -10,19 +11,22 @@ import { ViewChildren, QueryList } from "@angular/core";
 })
 export class ExpensesHomeComponent implements OnInit {
   @ViewChildren("expenseTable") expenseTable: QueryList<any>;
+  @ViewChild("discreteBar", { static: false }) discreteBar: OChartComponent;
+  @ViewChild("hiddenChart", { static: false }) hiddenChart: ElementRef;
   public selected = {};
   public date = [];
+  sharedDataObject: { data: any[] } | null = { data: [] };
+  protected chartParameters: DiscreteBarChartConfiguration;
+  //externalData : any[] | null = null;
+ 
+  
+  
+  constructor() { }
 
-  constructor() {
-    this.selected = {
-      startDate: moment("1993-01-01T00:00Z"),
-      endDate: moment(new Date()),
-    };
-  }
+  ngOnInit() {  }
+    
 
-  ngOnInit() {}
-
-  clearFilters() {
+   clearFilters(event) {
     this.expenseTable.first.reloadData();
   }
 
@@ -30,9 +34,9 @@ export class ExpensesHomeComponent implements OnInit {
     return this.selected;
   }
 
-  createFilter(values: Array<{ attr; value }>): Expression {
-    let filters: Array<Expression> = [];
 
+  public createFilter(values: Array<{ attr; value }>): Expression {
+    let filters: Array<Expression> = [];
     values.forEach((fil) => {
       if (fil.value) {
         if (fil.attr === "date_range2") {
@@ -50,7 +54,7 @@ export class ExpensesHomeComponent implements OnInit {
           );
         }
 
-        if (fil.attr === "CA_ID") {
+        if (fil.attr === "CA_ID" && fil.value.length > 0) {
           let valueArray = Array.from(fil.value);
           if (valueArray.length > 1) {
             let filterExpressions = valueArray.map((value) =>
@@ -76,7 +80,8 @@ export class ExpensesHomeComponent implements OnInit {
       }
     });
 
-    if (filters.length > 0) {
+    if (filters.length > 0) {   
+    
       const filterExpression = filters.reduce((exp1, exp2) =>
         FilterExpressionUtils.buildComplexExpression(
           exp1,
@@ -88,5 +93,22 @@ export class ExpensesHomeComponent implements OnInit {
     } else {
       return null;
     }
+  
   }
+
+
+public dataFiltered(event){
+
+if(event.length === 0){
+//this.discreteBarNative.nativeElement.style.display = 'none'; 
 }
+    this.sharedDataObject = { data: event };
+    //this.hiddenChart.nativeElement.style.display='none'; 
+ 
+ 
+
+ }
+  
+
+}
+

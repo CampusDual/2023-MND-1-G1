@@ -1,4 +1,5 @@
-import { Component, OnInit, Injector, ViewChild } from "@angular/core";
+import { Component, OnInit, Injector, ViewChild,Input, OnChanges, SimpleChanges, AfterViewInit , ElementRef } from "@angular/core";
+import { HasElementRef } from "@angular/material/core/typings/common-behaviors/color";
 import { OntimizeService, OTranslateService } from "ontimize-web-ngx";
 import {
   ChartService,
@@ -14,8 +15,10 @@ import { D3Locales } from "src/app/shared/d3-locale/locales";
   styleUrls: ["./expenses-chart.component.css"],
   providers: [ChartService],
 })
-export class ExpensesChartComponent implements OnInit {
+export class ExpensesChartComponent implements OnInit, OnChanges, AfterViewInit  {
+  @Input() sharedDataObject: {data: any[]} |  null;
   @ViewChild("discreteBar", { static: false }) discreteBar: OChartComponent;
+  @ViewChild("discreteBar", { static: false }) discreteBarNative: ElementRef;
   protected data: Array<Object>;
   protected yAxis: string = "SUM_AMOUNT";
   protected xAxis: string = "DATE_SUM_AMOUNT";
@@ -23,6 +26,7 @@ export class ExpensesChartComponent implements OnInit {
   public lang;
   protected d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
   protected chartParameters: DiscreteBarChartConfiguration;
+  showChart:boolean= false; 
 
   constructor(
     protected injector: Injector,
@@ -38,6 +42,23 @@ export class ExpensesChartComponent implements OnInit {
     this.translateNoDataMessage();
     this.queryData();
   }
+
+  ngOnInit() {
+    
+  }
+
+  ngAfterViewInit() {
+    if ( this.sharedDataObject) {
+      this.updateChartWithData(this.sharedDataObject);
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.sharedDataObject && this.sharedDataObject) {
+      this.updateChartWithData(this.sharedDataObject);
+    }
+  }
+
   protected configureService() {
     const conf = this.service.getDefaultServiceConfiguration("movements");
     this.service.configureService(conf);
@@ -62,6 +83,7 @@ export class ExpensesChartComponent implements OnInit {
         }
       });
   }
+
   adaptResult(data: any) {
     if (data && data.length) {
       let values = this.processValues(data);
@@ -73,6 +95,7 @@ export class ExpensesChartComponent implements OnInit {
       ];
     }
   }
+
   processValues(data: Array<Object>): Array<Object> {
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     var self = this;
@@ -91,8 +114,6 @@ export class ExpensesChartComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
   public formater() {
     const chartService = this.discreteBar.getChartService();
     const chartOps = chartService.getChartOptions();
@@ -109,8 +130,38 @@ export class ExpensesChartComponent implements OnInit {
       this.chartParameters.noDataMessage = "No data available";
     }
   }
+
   public _confDiscreteBar() {
     this.chartParameters = new DiscreteBarChartConfiguration();
     this.chartParameters.margin.left = 80;
   }
+
+  public  updateChartWithData(obj: {data:any[]}){
+  if (obj && obj.data && obj.data.length > 0) {
+    obj.data = this.formatterDataExternal(obj);
+    this.adaptResult(obj.data);
+    this.formater();
+    this.showChart= true; 
+  } else {
+    this.showChart= true; 
+    
+  }
+  }
+
+public formatterDataExternal(obj: {data: any[]}) {
+  
+  const sumAmountByDate = obj.data.reduce((acc, item) => {
+      const date = new Date(item.MOV_DATE); 
+      const key = `${item.USER_}_${date}`;
+      if (!acc[key]) {
+          acc[key] = { USER_: item.USER_, DATE_SUM_AMOUNT: date, SUM_AMOUNT: 0 };
+      }
+      acc[key].SUM_AMOUNT += item.MOV_AMOUNT;
+      return acc;
+  }, {});
+
+  const dataFormat = Object.values(sumAmountByDate);
+  return dataFormat;
+  }
+
 }
