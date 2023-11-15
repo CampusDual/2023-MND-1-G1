@@ -183,16 +183,14 @@ public class GroupService implements IGroupService {
         membersAttrList.add(GroupDao.ATTR_USER_);
         EntityResult erGroupMembers = getGroupMembersQuery(keyMap, membersAttrList);
 
-        List<User> members = new ArrayList<>();
+        ArrayList<User> members = new ArrayList<>();
         for (String userName : (List<String>)erGroupMembers.get(GroupDao.ATTR_USER_) ){
-            members.add(new User(userName));
+            User m = new User(userName);
+            m.initializeFromEntityResult(getGroupMovementsByUser(keyMap, m.getName()));
+            members.add(m);
         }
 
-        for(User m : members) {
-            m.setMovementsFromEntityResult(getGroupMovementsByUser(keyMap, m.getName()));
-        }
-
-        GroupBalance groupBalance = new GroupBalance((ArrayList<User>) members);
+        GroupBalance groupBalance = new GroupBalance(members);
 
         return groupBalance.settlingBalance();
     }

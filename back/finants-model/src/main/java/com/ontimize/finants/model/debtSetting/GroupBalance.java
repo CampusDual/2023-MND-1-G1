@@ -12,9 +12,9 @@ import java.util.List;
 
 public class GroupBalance {
 
-    private BigDecimal totalAmount = BigDecimal.ZERO;
+    private BigDecimal totalGroupAmount = BigDecimal.ZERO;
     private BigDecimal splitAmount = BigDecimal.ZERO;
-    private ArrayList<User> groupMembers;
+    private final ArrayList<User> groupMembers;
 
     private List<SettlingMovement> movementList = new ArrayList<>();
 
@@ -25,14 +25,14 @@ public class GroupBalance {
     }
 
     private void calculateTotalAmount() {
-        groupMembers.forEach(u -> this.totalAmount = this.totalAmount.add(u.getBalance()));
+        groupMembers.forEach(u -> this.totalGroupAmount = this.totalGroupAmount.add(u.getTotalMovementAmount()));
     }
 
     private void calculateSplitAmount(){
-        if (this.totalAmount.compareTo(BigDecimal.ZERO) != 0) {
+        if (this.totalGroupAmount.compareTo(BigDecimal.ZERO) != 0) {
             //Expenses are negative movements, the sum should be negative
             //But is also possible to add group incomes even if not yet implemented
-            this.splitAmount = this.totalAmount.divide(new BigDecimal(this.groupMembers.size()), RoundingMode.HALF_EVEN);
+            this.splitAmount = this.totalGroupAmount.divide(new BigDecimal(this.groupMembers.size()), RoundingMode.HALF_EVEN);
             this.splitAmount = splitAmount.setScale(2, RoundingMode.HALF_EVEN);
         }
     }
@@ -41,44 +41,44 @@ public class GroupBalance {
         // Calculate group balance for each group member
         // Each user balance is the sum of its movements (what they theoretically paid)
         // minus how much they should pay
-        this.groupMembers.forEach(u -> u.setBalance(this.splitAmount.subtract(u.getBalance())));
+        this.groupMembers.forEach(u -> u.initializeBalances(this.splitAmount));
 
         // First, the user list is cloned and ordered in ascending order
         // That way users who owe the most money go first
         ArrayList<User> usersCloned = (ArrayList<User>) this.groupMembers.clone();
-        usersCloned.sort(Comparator.comparing(User::getBalance));
+        usersCloned.sort(Comparator.comparing(User::getUpdatedBalance));
 
         // Due to operations with irrational numbers, rounding is needed and might be some difference between
         // total amount and calculated total of up to 0.01, to fix this, 0.01 is added to the amount
         // the user who is owed the most should receive
         BigDecimal calculatedTotalFromSplit =  this.splitAmount.abs().multiply(new BigDecimal(this.groupMembers.size()));
-        if (this.totalAmount.abs().compareTo(calculatedTotalFromSplit) != 0) {
-            this.groupMembers.sort(Comparator.comparing(User::getBalance).reversed());
-            BigDecimal adjustCent = this.totalAmount.abs().subtract(calculatedTotalFromSplit.abs());
-            BigDecimal correctedAmount = this.groupMembers.get(0).getBalance().add(adjustCent.abs());
+        if (this.totalGroupAmount.abs().compareTo(calculatedTotalFromSplit) != 0) {
+            this.groupMembers.sort(Comparator.comparing(User::getUpdatedBalance).reversed());
+            BigDecimal adjustCent = this.totalGroupAmount.abs().subtract(calculatedTotalFromSplit.abs());
+            BigDecimal correctedAmount = this.groupMembers.get(0).getUpdatedBalance().add(adjustCent.abs());
 
-            this.groupMembers.get(0).setBalance(correctedAmount);
+            this.groupMembers.get(0).setUpdatedBalance(correctedAmount);
         }
 
         for (int i = 0; i < usersCloned.size(); i++) {
             User payer = usersCloned.get(i);
-            BigDecimal payerShouldSend = payer.getBalance().abs();
+            BigDecimal payerShouldSend = payer.getUpdatedBalance().abs();
 
             // We skip users with positive balance, they don't have to pay to anyone
             while (payerShouldSend.compareTo(BigDecimal.ZERO) > 0) {
                 // Original user list is sorted in reversed orderd, the user who is owed the most gets paid first
-                this.groupMembers.sort(Comparator.comparing(User::getBalance).reversed());
+                this.groupMembers.sort(Comparator.comparing(User::getUpdatedBalance).reversed());
                 User userToPay = this.groupMembers.get(0);
-                BigDecimal recipientShouldReceive = userToPay.getBalance().abs();
+                BigDecimal recipientShouldReceive = userToPay.getUpdatedBalance().abs();
 
                 // The amount payer has to pay should be compared in absolute values
                 // to check if they owe more or less than userToPay is owed
                 if (payerShouldSend.compareTo(recipientShouldReceive) >= 0) {
                     // Payer has to pay more than the recipient will receive, it will be split
                     BigDecimal amount = recipientShouldReceive;
-                    userToPay.setBalance(userToPay.getBalance().subtract(amount));
+                    userToPay.setUpdatedBalance(userToPay.getUpdatedBalance().subtract(amount));
                     payerShouldSend = payerShouldSend.subtract(amount);
-                    payer.setBalance(payer.getBalance().add(amount));
+                    payer.setUpdatedBalance(payer.getUpdatedBalance().add(amount));
                     this.movementList.add(new SettlingMovement(amount, payer, userToPay)); //For readability, quantities are better in positive values
 
                 // If payer owes more than userToPay is owed, payer will split
@@ -86,9 +86,9 @@ public class GroupBalance {
                 } else if (payerShouldSend.compareTo(recipientShouldReceive) < 0) {
                     // Payer pays all their money to userToPay, since it's not enough to cover the owed quantity
                     BigDecimal amount = payerShouldSend;
-                    userToPay.setBalance(userToPay.getBalance().subtract(amount));
+                    userToPay.setUpdatedBalance(userToPay.getUpdatedBalance().subtract(amount));
                     payerShouldSend = payerShouldSend.subtract(amount);
-                    payer.setBalance(payer.getBalance().add(amount));
+                    payer.setUpdatedBalance(payer.getUpdatedBalance().add(amount));
                     this.movementList.add(new SettlingMovement(amount, payer, userToPay)); //For readability, quantities are better in positive values
 
                 }
