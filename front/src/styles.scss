@@ -21,9 +21,6 @@
 .o-button button.mat-stroked-button {
   border: none;
 }
-.graph-container {
-  border-radius: 10px;
-}
 
 .expense-table thead {
   background-color: var(--var-expense-color);
@@ -224,9 +221,11 @@ mat-dialog-container {
 .close-button {
   border-radius: 50% !important;
 }
-.combo-padding span {
+.mat-select-empty,
+.mat-select {
   padding-bottom: 6.6px !important;
 }
+
 .expenses-form-new-buttons .o-form-toolbar-button-cancel,
 .incomes-form-new-buttons .o-form-toolbar-button-cancel {
   display: none;
@@ -353,9 +352,15 @@ mat-dialog-container {
   border: 2px solid var(--var-normal-color);
   border-radius: 10px !important;
 }
+.expense-table .mat-paginator button:hover {
+  background-color: var(--var-expenses-hover);
+}
 
 ///////////
 
 .group-table .mat-input-element {
   caret-color: var(--var-normal-color) !important;
+}
+.o-table .o-table-menu-button {
+  display: none !important;
 }

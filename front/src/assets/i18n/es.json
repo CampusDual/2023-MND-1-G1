@@ -94,11 +94,12 @@
   "NAME": "Nombre",
   "LASTNAME": "Apellido",
   "EMAIL": "Correo electrónico",
-  "GOAL_DETAIL": "Detalle del objetivo",
-  "GR_MOVEMENTS":"Movimientos del grupo",
-  "GR_BALANCES" : "Balance de miembros",
-  "PAYER":"Pagador",
-  "RECIPIENT":"Receptor",
+  "GR_MOVEMENTS": "Movimientos del grupo",
+  "GR_BALANCES": "Balance de miembros",
+  "PAYER": "Pagador",
+  "RECIPIENT": "Receptor",
   "GR_HAS_TO_PAY": "tiene que pagar",
-  "GR_TO": "a"
+  "GR_TO": "a",
+
+  "NO_DATA_AVAILABLE": "No hay datos disponibles"
 }

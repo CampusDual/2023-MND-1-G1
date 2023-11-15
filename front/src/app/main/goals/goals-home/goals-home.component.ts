@@ -26,12 +26,8 @@ export class GoalsHomeComponent implements OnInit {
   ngOnInit() {}
   public translateNoDataMessage() {
     this.lang = this.translateService.getCurrentLang().toUpperCase();
-
-    if (this.lang === "ES") {
-      this.chartParameters.noDataMessage = "No hay datos disponibles";
-    } else if (this.lang === "EN") {
-      this.chartParameters.noDataMessage = "No data available";
-    }
+    this.chartParameters.noDataMessage =
+      this.translateService.get("NO_DATA_AVAILABLE");
   }
   public _confDiscreteBar() {
     this.chartParameters = new PieChartConfiguration();

@@ -86,10 +86,12 @@
   "NAME": "Name",
   "LASTNAME": "Lastname",
   "EMAIL": "Email",
-  "GR_MOVEMENTS":"Group movements",
-  "GR_BALANCES" : "Member's balances",
-  "PAYER":"Payer",
-  "RECIPIENT":"Recipient",
+  "GR_MOVEMENTS": "Group movements",
+  "GR_BALANCES": "Member's balances",
+  "PAYER": "Payer",
+  "RECIPIENT": "Recipient",
   "GR_HAS_TO_PAY": "has to pay",
-  "GR_TO": "to"
+  "GR_TO": "to",
+
+  "NO_DATA_AVAILABLE": "No data available"
 }

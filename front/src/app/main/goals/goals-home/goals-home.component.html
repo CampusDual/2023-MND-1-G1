@@ -1,31 +1,35 @@
-<div fxFlex fxLayout="column" fxLayoutAlign="stretch" class="container-margin">
-  <div fxLayout="row" fxLayoutAlign="space-around stretch">
-    <div fxLayoutAlign="center center" fxFlex>
-      <h2>{{'GOALS_LIST' | oTranslate }}</h2>
+<!--Tabla y chart-->
+<div class="table-chart-container">
+  <!--Tabla-->
+  <div class="table-container">
+    <div class="table-title">
+      <h3>{{'GOALS_LIST' | oTranslate }}</h3>
     </div>
-    <div fxLayoutAlign="center center" fxFlex>
-      <h2>{{'TOTAL_EXPENSES_CATEGORIES' | oTranslate }}</h2>
+    <div class="goal-table">
+      <o-form-layout-manager mode="dialog">
+        <o-form-layout-dialog-options width="fit-content" height="580px"></o-form-layout-dialog-options>
+        <o-table #goalTable attr="goalTable" service="goals" entity="getGoalsCategoryWithName" keys="GO_ID"
+          columns="GO_ID;USER_;GO_NAME;CA_ID;GO_AMOUNT;CA_NAME" visible-columns="GO_NAME;CA_NAME;GO_AMOUNT"
+          virtual-scroll="no" delete-button="no" resizable="false">
+          <!--sort-columns="MOV_DATE:DESC"-->
+          <o-table-paginator page-size-options="20"></o-table-paginator>
+          <o-table-column attr="GO_NAME" title="GOALS_NAMES" content-align="center"></o-table-column>
+          <o-table-column attr="CA_NAME" title="CATEGORIES" content-align="center"></o-table-column>
+          <o-table-column attr="GO_AMOUNT" title="SPENDING_LIMIT" type="currency" currency-symbol="€"
+            currency-symbol-position="right" content-align="center"></o-table-column>
+        </o-table>
+      </o-form-layout-manager>
     </div>
   </div>
-  <o-form-layout-manager mode="dialog" (onUpdate)="onUpdate()">
-    <o-form-layout-dialog-options width="fit-content" height="450px"></o-form-layout-dialog-options>
-    <div class="goals-main-container">
-      <div class="table-container">
-        <div fxFill fxLayout="column" fxLayoutAlign="start">
-          <div>
-            <o-table #goalTable class="goal-table" attr="goalTable" service="goals" entity="getGoalsCategoryWithName"
-              keys="GO_ID" columns="GO_ID;USER_;GO_NAME;CA_ID;GO_AMOUNT;CA_NAME"
-              visible-columns="GO_NAME;CA_NAME;GO_AMOUNT" virtual-scroll="no" delete-button="no" query-rows="20">
-              <o-table-column attr="GO_NAME" title="GOALS_NAMES" content-align="center"></o-table-column>
-              <o-table-column attr="CA_NAME" title="CATEGORIES" content-align="center"></o-table-column>
-              <o-table-column attr="GO_AMOUNT" title="SPENDING_LIMIT" type="currency" currency-symbol="€"
-                currency-symbol-position="right" content-align="center"></o-table-column>
-            </o-table>
-          </div>
-        </div>
-      </div>
-      <o-chart fxFlex type="pie" entity="totalExpensesForCategories" service="movements" x-axis="CA_NAME"
-        y-axis="TOTAL_SPENT" [chart-parameters]="chartParameters" class="total_category_chart"></o-chart>
+
+  <!--Chart-->
+  <div class="chart-container">
+    <div class="table-title">
+      <h3>{{'TOTAL_EXPENSES_CATEGORIES' | oTranslate }}</h3>
     </div>
-  </o-form-layout-manager>
+    <div class="goal-table">
+      <o-chart fxFlex type="pie" entity="totalExpensesForCategories" service="movements" x-axis="CA_NAME"
+        y-axis="TOTAL_SPENT" [chart-parameters]="chartParameters"></o-chart>
+    </div>
+  </div>
 </div>

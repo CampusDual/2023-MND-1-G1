@@ -9,10 +9,11 @@ import { ViewChildren, QueryList } from "@angular/core";
   styleUrls: ["./incomes-home.component.css"],
 })
 export class IncomesHomeComponent implements OnInit {
+  @ViewChildren("incomeTable") incomeTable: QueryList<any>;
   public selected = {};
   public date = [];
-
-  @ViewChildren("incomeTable") incomeTable: QueryList<any>;
+  showChart: boolean = true;
+  sharedDataObject: { data: any[] } | null = { data: [] };
   constructor() {
     this.selected = {
       startDate: moment("1993-01-01T00:00Z"),
@@ -84,6 +85,18 @@ export class IncomesHomeComponent implements OnInit {
       );
     } else {
       return null;
+    }
+  }
+  public dataFiltered(event) {
+    this.sharedDataObject = { data: event };
+    console.log(this.sharedDataObject);
+
+    if (event.length === 0) {
+      // Cuando no haya nada que mostrar
+      this.showChart = false;
+    } else {
+      // Cuando si
+      this.showChart = true;
     }
   }
 }

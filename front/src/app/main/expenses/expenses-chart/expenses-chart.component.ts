@@ -1,5 +1,15 @@
-import { Component, OnInit, Injector, ViewChild,Input, OnChanges, SimpleChanges, AfterViewInit , ElementRef } from "@angular/core";
-import { HasElementRef } from "@angular/material/core/typings/common-behaviors/color";
+import {
+  Component,
+  OnInit,
+  Injector,
+  ViewChild,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  ElementRef,
+} from "@angular/core";
+
 import { OntimizeService, OTranslateService } from "ontimize-web-ngx";
 import {
   ChartService,
@@ -15,8 +25,10 @@ import { D3Locales } from "src/app/shared/d3-locale/locales";
   styleUrls: ["./expenses-chart.component.css"],
   providers: [ChartService],
 })
-export class ExpensesChartComponent implements OnInit, OnChanges, AfterViewInit  {
-  @Input() sharedDataObject: {data: any[]} |  null;
+export class ExpensesChartComponent
+  implements OnInit, OnChanges, AfterViewInit
+{
+  @Input() sharedDataObject: { data: any[] } | null;
   @ViewChild("discreteBar", { static: false }) discreteBar: OChartComponent;
   @ViewChild("discreteBar", { static: false }) discreteBarNative: ElementRef;
   protected data: Array<Object>;
@@ -26,7 +38,6 @@ export class ExpensesChartComponent implements OnInit, OnChanges, AfterViewInit 
   public lang;
   protected d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
   protected chartParameters: DiscreteBarChartConfiguration;
-  showChart:boolean= false; 
 
   constructor(
     protected injector: Injector,
@@ -43,12 +54,10 @@ export class ExpensesChartComponent implements OnInit, OnChanges, AfterViewInit 
     this.queryData();
   }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
-    if ( this.sharedDataObject) {
+    if (this.sharedDataObject) {
       this.updateChartWithData(this.sharedDataObject);
     }
   }
@@ -123,12 +132,8 @@ export class ExpensesChartComponent implements OnInit, OnChanges, AfterViewInit 
   }
   public translateNoDataMessage() {
     this.lang = this.translateService.getCurrentLang().toUpperCase();
-
-    if (this.lang === "ES") {
-      this.chartParameters.noDataMessage = "No hay datos disponibles";
-    } else if (this.lang === "EN") {
-      this.chartParameters.noDataMessage = "No data available";
-    }
+    this.chartParameters.noDataMessage =
+      this.translateService.get("NO_DATA_AVAILABLE");
   }
 
   public _confDiscreteBar() {
@@ -136,32 +141,26 @@ export class ExpensesChartComponent implements OnInit, OnChanges, AfterViewInit 
     this.chartParameters.margin.left = 80;
   }
 
-  public  updateChartWithData(obj: {data:any[]}){
-  if (obj && obj.data && obj.data.length > 0) {
-    obj.data = this.formatterDataExternal(obj);
-    this.adaptResult(obj.data);
-    this.formater();
-    this.showChart= true; 
-  } else {
-    this.showChart= true; 
-    
-  }
+  public updateChartWithData(obj: { data: any[] }) {
+    if (obj && obj.data && obj.data.length > 0) {
+      obj.data = this.formatterDataExternal(obj);
+      this.adaptResult(obj.data);
+      this.formater();
+    }
   }
 
-public formatterDataExternal(obj: {data: any[]}) {
-  
-  const sumAmountByDate = obj.data.reduce((acc, item) => {
-      const date = new Date(item.MOV_DATE); 
+  public formatterDataExternal(obj: { data: any[] }) {
+    const sumAmountByDate = obj.data.reduce((acc, item) => {
+      const date = new Date(item.MOV_DATE);
       const key = `${item.USER_}_${date}`;
       if (!acc[key]) {
-          acc[key] = { USER_: item.USER_, DATE_SUM_AMOUNT: date, SUM_AMOUNT: 0 };
+        acc[key] = { USER_: item.USER_, DATE_SUM_AMOUNT: date, SUM_AMOUNT: 0 };
       }
       acc[key].SUM_AMOUNT += item.MOV_AMOUNT;
       return acc;
-  }, {});
+    }, {});
 
-  const dataFormat = Object.values(sumAmountByDate);
-  return dataFormat;
+    const dataFormat = Object.values(sumAmountByDate);
+    return dataFormat;
   }
-
 }
