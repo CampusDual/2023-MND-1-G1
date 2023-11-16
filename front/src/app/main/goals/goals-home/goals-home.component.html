@@ -7,17 +7,20 @@
     </div>
     <div class="goal-table">
       <o-form-layout-manager mode="dialog">
-        <o-form-layout-dialog-options width="850px" height="580px"></o-form-layout-dialog-options>
-        <o-table #goalTable attr="goalTable" service="goals" entity="goalsCategoryWithName" keys="GO_ID"
-          columns="GO_ID;USER_;GO_NAME;CA_ID;GO_AMOUNT;CA_NAME" visible-columns="GO_NAME;CA_NAME;GO_AMOUNT"
-          virtual-scroll="no" delete-button="no" resizable="false">
-          <!--sort-columns="MOV_DATE:DESC"-->
-          <o-table-paginator page-size-options="20"></o-table-paginator>
-          <o-table-column attr="GO_NAME" title="GOALS_NAMES" content-align="center"></o-table-column>
-          <o-table-column attr="CA_NAME" title="CATEGORIES" content-align="center"></o-table-column>
-          <o-table-column attr="GO_AMOUNT" title="SPENDING_LIMIT" type="currency" currency-symbol="€"
-            currency-symbol-position="right" content-align="center"></o-table-column>
-        </o-table>
+        <o-form-layout-dialog-options width="fit-content" height="580px"></o-form-layout-dialog-options>
+        <o-table #goalTable class="goal-table" attr="goalTable" service="goals" entity="goalsWithExpense"
+              keys="GO_ID" columns="GO_NAME;USER_;GO_AMOUNT;CA_ID;TOTAL_EXPENSE;PERCENTAGE_EXPENSE;CA_NAME"
+              visible-columns="GO_NAME;GO_AMOUNT;CA_NAME;TOTAL_EXPENSE;PERCENTAGE_EXPENSE" virtual-scroll="no"
+              delete-button="no" query-rows="14" collapse-grouped-columns="yes">
+              <o-table-paginator page-size-options="14"></o-table-paginator>
+              <o-table-column attr="GO_NAME" title="GOALS_NAMES" content-align="center"></o-table-column>
+              <o-table-column attr="CA_NAME" title="CATEGORIES" content-align="center"></o-table-column>
+              <o-table-column attr="GO_AMOUNT" title="GOAL_LIMIT" type="currency" currency-symbol="€"
+                currency-symbol-position="right" content-align="center"></o-table-column>
+              <o-table-column attr="TOTAL_EXPENSE" title="GOAL_TOTAL_EXPENSE" type="currency" currency-symbol="€" currency-symbol-position="right" [value-column]="balance"></o-table-column>
+              <o-table-column attr="PERCENTAGE_EXPENSE" title="GOAL_PERCENTAGE_EXPENSE" type="percentage"
+                decimal-separator="," max-decimal-digits="2" thousand-separator="."></o-table-column>
+            </o-table>
       </o-form-layout-manager>
     </div>
   </div>

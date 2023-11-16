@@ -60,7 +60,7 @@ public class GoalService implements IGoalService {
         keyMap.put(GoalDao.ATTR_MOV_MONTH, LocalDate.now().getMonthValue());
         keyMap.put(GoalDao.ATTR_MOV_YEAR, LocalDate.now().getYear());
         keyMapFilterUser.put(GoalDao.ATTR_USER_, daoHelper.getUser().getUsername());
-        return this.daoHelper.query(this.goalDao, keyMapFilterUser, attrList,GoalDao.QUERY_GOALS_CATEGORY_WITH_NAME);
+        return this.daoHelper.query(this.goalDao, keyMapFilterUser, attrList, GoalDao.QUERY_GOALS_WITH_CATEGORY_NAME);
     }
 
     @Override
