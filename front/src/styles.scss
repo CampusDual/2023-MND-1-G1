@@ -357,7 +357,12 @@ mat-dialog-container {
 .expense-table .mat-paginator button:hover {
   background-color: var(--var-expenses-hover);
 }
-
+.goal-table .mat-paginator button:hover {
+  background-color: rgba(173, 107, 169, 0.2);
+}
+.group-table .mat-paginator button:hover {
+  background-color: rgba(88, 180, 183, 0.2);
+}
 ///////////
 
 .group-table .mat-input-element {
