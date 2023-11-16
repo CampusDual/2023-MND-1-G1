@@ -1,6 +1,6 @@
 <div mat-dialog-content>
   <o-form #goalTable class=" text-detail-goals formNewGoal o-form-toolbar-button" attr="goalsDetailsTable"
-    service="goals" entity="getGoalsCategoryWithName" header-actions="U;D" keys="GO_ID" show-header="true"
+    service="goals" entity="goalsWithCategoryName" header-actions="U;D" keys="GO_ID" show-header="true"
     parent-keys="GO_ID" keys-sql-types="INTEGER" label-header="GOAL_DETAIL" show-header-navigation="yes"
     (onUpdate)="onUpdate()" >
     <o-column>

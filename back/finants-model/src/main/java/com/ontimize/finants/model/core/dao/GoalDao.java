@@ -16,5 +16,8 @@ public class GoalDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_GO_AMOUNT = "GO_AMOUNT";
     public static final String ATTR_MOV_MONTH = "MOV_MONTH";
     public static final String ATTR_MOV_YEAR = "MOV_YEAR";
-    public static final String QUERY_GET_GOALS_CATEGORY_WITH_NAME = "getGoalsCategoryWithName";
+    public static final String ATTR_TOTAL_EXPENSE = "TOTAL_EXPENSE";
+    public static final String ATTR_TOTAL_SPENT = "TOTAL_SPENT";
+    public static final String ATTR_PERCENTAGE_EXPENSE = "PERCENTAGE_EXPENSE";
+    public static final String QUERY_GOALS_CATEGORY_WITH_NAME = "goalsWithCategoryName";
 }
