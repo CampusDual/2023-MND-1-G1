@@ -16,7 +16,7 @@ import { GroupDetailUserColorComponent } from "./groups-detail/group-detail-user
     AddMemberComponent,
     GroupsNewComponent,
     MovementColumnRendererComponent,
-    GroupDetailUserColorComponent,
+    GroupDetailUserColorComponent
   ],
   imports: [CommonModule, OntimizeWebModule, GroupsRoutingModule],
 })
