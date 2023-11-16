@@ -100,6 +100,6 @@
   "RECIPIENT": "Receptor",
   "GR_HAS_TO_PAY": "tiene que pagar",
   "GR_TO": "a",
-
+  "GR_SETTLE_UP": "Vamos a cuadrar cuentas",
   "NO_DATA_AVAILABLE": "No hay datos disponibles"
 }

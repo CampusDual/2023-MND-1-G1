@@ -31,18 +31,18 @@
         <div class="container-payments">
           <div class="header-container">
               <img src="../../../../assets/images/logo/sidenav-closed-60.png" alt="Logo aplicación" class="app-logo">
-            <h2>¡Vamos a hacer cuentas!</h2>
+            <h2>{{'GR_SETTLE_UP' | oTranslate}}</h2>
           </div>
           <div class="payments-content" id="pay_content">
             <o-list id="myUniqueList" #list attr="settlingList" service="groups" entity="settlingMovements" parent-keys="GR_ID"
               columns="PAYER;RECIPIENT;AMOUNT" delete-button="no" quick-filter="no" (onDataLoaded)="prepareData($event)" refresh-button="no" >
               <div *ngFor="let payer of list.dataArray">
                 <div class="payer-title" *ngIf="payer.PAYER">
-                  {{ payer.PAYER }} tiene que pagar:
+                  {{ payer.PAYER}} {{ 'GR_HAS_TO_PAY' | oTranslate }}:
                 </div>
                 <div *ngFor="let payment of payer.payments">
                   <div class="payment-detail">
-                    {{payment.amount}}€ a {{payment.recipient}}
+                    {{payment.amount}}€  {{ 'GR_TO' | oTranslate }} {{payment.recipient}}
                   </div>
                 </div>
               </div>
