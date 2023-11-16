@@ -11,15 +11,16 @@ public interface IGroupService {
     public EntityResult groupInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException;
     public EntityResult groupUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult groupDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
-    public EntityResult getGroupsByMemberQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+    public EntityResult groupsByMemberQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
     public EntityResult getGroupMembersQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+    public EntityResult groupsByMemberDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult getAvailableMembersQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
     public EntityResult getGroupMovements(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
-    public EntityResult getGroupMembersWithBalanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
-    public EntityResult getGroupMovementsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
-    public EntityResult getGroupMovementsDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
-    public EntityResult getGroupMembersWithBalanceDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
+    public EntityResult groupMembersWithBalanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+    public EntityResult groupMovementsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+    public EntityResult groupMovementsDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
+    public EntityResult groupMembersWithBalanceDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult getGroupMovementsByUser(Map<String, Object> keyMap, String user) throws OntimizeJEERuntimeException;
-    public EntityResult getAvailableUsersForGroupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+    public EntityResult availableUsersForGroupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
     public EntityResult settlingMovementsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 }

@@ -13,7 +13,7 @@
     </UpdateKeys>
     <GeneratedKey>gr_id</GeneratedKey>
     <Queries>
-        <Query id="getGroupsByMember">
+        <Query id="groupsByMember">
             <AmbiguousColumns>
                 <AmbiguousColumn name="GR_ID" prefix="g"/>
             </AmbiguousColumns>
@@ -65,7 +65,7 @@
                 ]]>
             </Sentence>
         </Query>
-        <Query id="getGroupMembersWithBalance">
+        <Query id="groupMembersWithBalance">
             <AmbiguousColumns>
                 <AmbiguousColumn name="GR_ID" prefix="g" />
             </AmbiguousColumns>
@@ -119,7 +119,7 @@
                 ]]>
             </Sentence>
         </Query>
-        <Query id="getGroupMovements">
+        <Query id="groupMovements">
             <Sentence>
                 <![CDATA[
                     SELECT

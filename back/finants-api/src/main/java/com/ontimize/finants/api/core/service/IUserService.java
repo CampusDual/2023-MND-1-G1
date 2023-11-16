@@ -13,5 +13,5 @@ public interface IUserService {
 	public EntityResult userInsert(Map<?, ?> attrMap);
 	public EntityResult userUpdate(Map<?, ?> attrMap, Map<?, ?> keyMap);
 	public EntityResult userDelete(Map<?, ?> keyMap);
-	public EntityResult getAvailableUsersForGroupQuery(Map<?, ?> keyMap, List<?> attrList) throws OntimizeJEERuntimeException;
+	public EntityResult availableUsersForGroupQuery(Map<?, ?> keyMap, List<?> attrList) throws OntimizeJEERuntimeException;
 }

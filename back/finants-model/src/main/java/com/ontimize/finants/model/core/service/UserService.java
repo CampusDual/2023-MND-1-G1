@@ -48,7 +48,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public EntityResult getAvailableUsersForGroupQuery(Map<?, ?> keyMap, List<?> attrList) throws OntimizeJEERuntimeException {
+	public EntityResult availableUsersForGroupQuery(Map<?, ?> keyMap, List<?> attrList) throws OntimizeJEERuntimeException {
 		return this.daoHelper.query(this.userDao, keyMap, attrList, UserDao.QUERY_AVAILABLE_USERS);
 	}
 

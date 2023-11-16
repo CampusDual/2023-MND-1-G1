@@ -35,7 +35,7 @@
               value-column="CA_ID" multiple="false" required="yes" (onChange)="onUserChange()"
               null-selection="false"></o-combo>
             <o-combo attr="GR_ID" label="GROUPS_OPTIONAL" class="input-padding" service="groups"
-              entity="getGroupsByMember" keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME"
+              entity="groupsByMember" keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME"
               value-column="GR_ID" multiple="false" required="no" fxFlex="45" (onChange)="onUserChange()">
             </o-combo>
           </div>

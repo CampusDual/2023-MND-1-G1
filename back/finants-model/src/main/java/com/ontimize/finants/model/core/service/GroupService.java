@@ -72,19 +72,24 @@ public class GroupService implements IGroupService {
     }
 
     @Override
-    public EntityResult getGroupsByMemberQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        keyMap.put(GroupDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
-        return this.daoHelper.query(this.groupDao, keyMap, attrList, GroupDao.QUERY_GET_GROUPS_BY_MEMBER);
-    }
-
-    @Override
     public EntityResult getGroupMembersQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.groupDao, keyMap, attrList, GroupDao.QUERY_GET_GROUP_MEMBERS);
     }
 
     @Override
+    public EntityResult groupsByMemberQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        keyMap.put(GroupDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.groupDao, keyMap, attrList, GroupDao.QUERY_GROUPS_BY_MEMBER);
+    }
+
+    @Override
+    public EntityResult groupsByMemberDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        return this.groupDelete(keyMap);
+    }
+
+    @Override
     public EntityResult getAvailableMembersQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        return userService.getAvailableUsersForGroupQuery(keyMap, attrList);
+        return userService.availableUsersForGroupQuery(keyMap, attrList);
     }
 
     @Override
@@ -95,11 +100,11 @@ public class GroupService implements IGroupService {
         attrList.add(MovementDao.ATTR_MOV_AMOUNT);
         attrList.add(MovementDao.ATTR_MOV_CONCEPT);
 
-        return this.getGroupMovementsQuery(keyMap, attrList);
+        return this.groupMovementsQuery(keyMap, attrList);
     }
 
     @Override
-    public EntityResult getGroupMembersWithBalanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+    public EntityResult groupMembersWithBalanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
 
         //Recover all group's movements
         EntityResult movements = this.getGroupMovements(keyMap);
@@ -136,19 +141,7 @@ public class GroupService implements IGroupService {
     }
 
     @Override
-    public EntityResult getGroupMovementsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.groupDao, keyMap, attrList, GroupDao.QUERY_GET_GROUP_MOVEMENTS);
-    }
-
-    @Override
-    public EntityResult getGroupMovementsDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
-        Map<String, Object> fieldToUpdate = new HashMap<>();
-        fieldToUpdate.put(MovementDao.ATTR_GR_ID, null);
-        return movementService.movementUpdate(fieldToUpdate, keyMap);
-    }
-
-    @Override
-    public EntityResult getGroupMembersWithBalanceDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+    public EntityResult groupMembersWithBalanceDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         EntityResult userMovements = getMovementsFromMgId(keyMap);
 
         //If the user has any movements, unlink them first
@@ -158,11 +151,23 @@ public class GroupService implements IGroupService {
             for (int i = 0; i < movementCount; i++) {
                 Map<String, Object> movId = new HashMap<>();
                 movId.put(MovementDao.ATTR_ID, userMovements.getRecordValues(i).get(MovementDao.ATTR_ID));
-                this.getGroupMovementsDelete(movId);
+                this.groupMovementsDelete(movId);
             }
         }
         //Then, delete the user
         return this.memberGroupService.memberGroupDelete(keyMap);
+    }
+
+    @Override
+    public EntityResult groupMovementsQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.groupDao, keyMap, attrList, GroupDao.QUERY_GROUP_MOVEMENTS);
+    }
+
+    @Override
+    public EntityResult groupMovementsDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        Map<String, Object> fieldToUpdate = new HashMap<>();
+        fieldToUpdate.put(MovementDao.ATTR_GR_ID, null);
+        return movementService.movementUpdate(fieldToUpdate, keyMap);
     }
 
     @Override
@@ -172,8 +177,8 @@ public class GroupService implements IGroupService {
     }
 
     @Override
-    public EntityResult getAvailableUsersForGroupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        return this.userService.getAvailableUsersForGroupQuery(keyMap, attrList);
+    public EntityResult availableUsersForGroupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        return this.userService.availableUsersForGroupQuery(keyMap, attrList);
     }
 
     @Override
