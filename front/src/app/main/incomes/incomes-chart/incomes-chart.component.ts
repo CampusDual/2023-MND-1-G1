@@ -132,6 +132,23 @@ export class IncomesChartComponent implements OnInit, OnChanges, AfterViewInit {
   public _confDiscreteBar() {
     this.chartParameters = new DiscreteBarChartConfiguration();
     this.chartParameters.margin.left = 80;
+    this.chartParameters.color = [
+      "#ad6ba9",
+      "#bfd1d0",
+      "#B6B6FF",
+      "#FFE6B6",
+      "#FFB6B6",
+      "#E6B6FF",
+      "#B6E6FF",
+      "#FFB6E6",
+      "#B6FFE6",
+      "#FFD2B6",
+      "#D2FFB6",
+      "#D2B6FF",
+      "#B6D2FF",
+      "#e2cbd9",
+      "#c2a2c2",
+    ];
   }
   public updateChartWithData(obj: { data: any[] }) {
     if (obj && obj.data && obj.data.length > 0) {
