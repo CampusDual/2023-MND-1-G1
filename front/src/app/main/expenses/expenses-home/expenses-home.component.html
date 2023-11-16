@@ -62,7 +62,7 @@
         <app-expenses-chart *ngIf="showChart; else showMessage"
           [sharedDataObject]="sharedDataObject"></app-expenses-chart>
         <ng-template #showMessage>
-          <p>No se han obtenido resultados</p>
+          <p>{{"CHART_FILTER_BY_COLUMN.EMPTY_VALUE" | oTranslate}}</p>
         </ng-template>
       </div>
     </div>
