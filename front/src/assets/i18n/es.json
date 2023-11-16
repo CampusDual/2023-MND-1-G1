@@ -15,6 +15,11 @@
   "ERROR_USER_REQUIRED": "Nombre de usuario incorrecto",
   "ERROR_PASS_REQUIRED": "Contraseña incorrecta",
   "ERROR_USER_PASS_INCORRECT": "Usuario o contraseña incorrecta",
+  "ERROR_NAME_REQUIRED": "Introduce tu nombre",
+  "ERROR_LASTNAME_REQUIRED": "Introduce tus apellidos",
+  "ERROR_EMAIL_REQUIRED": "Email incorrecto",
+  "DONT_HAVE_ACCOUNT": "¿No tienes cuenta?",
+  "SIGN_UP_HERE": "Regístrate aquí",
   "REMEMBER_ME": "Recuérdame",
   "FORGOT_PWD": "¿Has olvidado tu contraseña?",
   "PRIVACY_POLICY": "Política de privacidad",
@@ -101,5 +106,6 @@
   "GR_HAS_TO_PAY": "tiene que pagar",
   "GR_TO": "a",
   "GR_SETTLE_UP": "Vamos a cuadrar cuentas",
-  "NO_DATA_AVAILABLE": "No hay datos disponibles"
+  "NO_DATA_AVAILABLE": "No hay datos disponibles",
+  "CHART_FILTER_BY_COLUMN.EMPTY_VALUE": "No se han obtenido resultados"
 }

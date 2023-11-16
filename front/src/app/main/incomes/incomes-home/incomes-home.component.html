@@ -63,7 +63,11 @@
         <h3>{{'INCOME_LIST' | oTranslate }}</h3>
       </div>
       <div class="income-table">
-        <app-incomes-chart *ngIf="showChart" [sharedDataObject]="sharedDataObject"></app-incomes-chart>
+        <app-incomes-chart *ngIf="showChart; else showMessage"
+          [sharedDataObject]="sharedDataObject"></app-incomes-chart>
+        <ng-template #showMessage>
+          <p>{{"CHART_FILTER_BY_COLUMN.EMPTY_VALUE" | oTranslate}}</p>
+        </ng-template>
       </div>
     </div>
   </div>

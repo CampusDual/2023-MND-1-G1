@@ -59,7 +59,11 @@
         <h3>{{'EXPENSE_LIST' | oTranslate }}</h3>
       </div>
       <div class="expense-table">
-        <app-expenses-chart *ngIf="showChart" [sharedDataObject]="sharedDataObject"></app-expenses-chart>
+        <app-expenses-chart *ngIf="showChart; else showMessage"
+          [sharedDataObject]="sharedDataObject"></app-expenses-chart>
+        <ng-template #showMessage>
+          <p>No se han obtenido resultados</p>
+        </ng-template>
       </div>
     </div>
   </div>

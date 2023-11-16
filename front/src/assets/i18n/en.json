@@ -15,13 +15,15 @@
   "ERROR_USER_REQUIRED": "Incorrect username",
   "ERROR_PASS_REQUIRED": "Incorrect password",
   "ERROR_USER_PASS_INCORRECT": "Invalid username or password",
+  "ERROR_NAME_REQUIRED": "First name is required",
+  "ERROR_LASTNAME_REQUIRED": "Last name is required",
+  "ERROR_EMAIL_REQUIRED": "Incorrect email",
   "REMEMBER_ME": "Remember me",
   "FORGOT_PWD": "Forgot your password?",
   "PRIVACY_POLICY": "Policy Privacy",
   "TERMS_AND_CONDITIONS": "Terms and conditions",
   "AGREE": "Agree",
   "DECLINE": "Decline",
-
   "EXPENSES": "Expenses",
   "CATEGORIES": "Categories",
   "CONCEPT": "Concept",
@@ -37,7 +39,6 @@
   "ADD_INCOMES": "Add incomes",
   "MONTHLY_BALANCE": "Balance of the month of ",
   "NON_NUM": "Please enter a numeric value.",
-
   "EXPENSE_LIST": "Expense list",
   "INCOME_LIST": "Income list",
   "CATEGORY": "Category",
@@ -93,5 +94,6 @@
   "GR_HAS_TO_PAY": "has to pay",
   "GR_TO": "to",
   "GR_SETTLE_UP": "Let's settle up",
-  "NO_DATA_AVAILABLE": "No data available"
+  "NO_DATA_AVAILABLE": "No data available",
+  "CHART_FILTER_BY_COLUMN.EMPTY_VALUE": "No results found"
 }
