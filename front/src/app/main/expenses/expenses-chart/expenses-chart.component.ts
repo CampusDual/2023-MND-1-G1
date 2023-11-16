@@ -38,6 +38,7 @@ export class ExpensesChartComponent
   public lang;
   protected d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
   protected chartParameters: DiscreteBarChartConfiguration;
+  
 
   constructor(
     protected injector: Injector,
@@ -166,6 +167,7 @@ export class ExpensesChartComponent
     }
   }
 
+
   public formatterDataExternal(obj: { data: any[] }) {
     const sumAmountByDate = obj.data.reduce((acc, item) => {
       const date = new Date(item.MOV_DATE);
@@ -177,7 +179,8 @@ export class ExpensesChartComponent
       return acc;
     }, {});
 
-    const dataFormat = Object.values(sumAmountByDate);
+    const dataFormat = Object.values(sumAmountByDate) as { USER_: string; DATE_SUM_AMOUNT: Date; SUM_AMOUNT: number }[];
+    dataFormat.sort((a, b) => a.DATE_SUM_AMOUNT.getTime() - b.DATE_SUM_AMOUNT.getTime());
     return dataFormat;
   }
 }

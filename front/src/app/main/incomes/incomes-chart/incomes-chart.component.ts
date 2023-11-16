@@ -169,7 +169,8 @@ export class IncomesChartComponent implements OnInit, OnChanges, AfterViewInit {
       return acc;
     }, {});
 
-    const dataFormat = Object.values(sumAmountByDate);
+    const dataFormat = Object.values(sumAmountByDate) as { USER_: string; DATE_SUM_AMOUNT: Date; SUM_AMOUNT: number }[];
+    dataFormat.sort((a, b) => a.DATE_SUM_AMOUNT.getTime() - b.DATE_SUM_AMOUNT.getTime());
     return dataFormat;
   }
 }
