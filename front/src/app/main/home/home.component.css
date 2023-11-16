@@ -74,3 +74,11 @@
 .button-income-color {
   color: green;
 }
+.expense-table {
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px 0 rgba(192, 145, 145, 1);
+}
+.income-table {
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px 0 rgba(145, 192, 158, 1);
+}

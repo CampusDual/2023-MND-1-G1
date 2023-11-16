@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,9 +51,10 @@ public class GoalService implements IGoalService {
     @Override
     public EntityResult getGoalsCategoryWithNameQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         Map<String, Object> keyMapFilterUser = new HashMap<>(keyMap);
+        keyMap.put(GoalDao.ATTR_MOV_MONTH, LocalDate.now().getMonthValue());
+        keyMap.put(GoalDao.ATTR_MOV_YEAR, LocalDate.now().getYear());
         keyMapFilterUser.put(GoalDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.goalDao, keyMapFilterUser, attrList,GoalDao.QUERY_GET_GOALS_CATEGORY_WITH_NAME);
-
     }
 
     @Override

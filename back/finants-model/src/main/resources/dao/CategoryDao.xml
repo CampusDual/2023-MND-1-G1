@@ -21,6 +21,8 @@
                     FROM
                         ${mainschema}.CATEGORIES
                     WHERE CA_ISEXPENSES = true
+                    ORDER BY
+                    CA_NAME ASC
                 ]]>
             </Sentence>
         </Query>
@@ -32,6 +34,8 @@
                     FROM
                         ${mainschema}.CATEGORIES
                     WHERE CA_ISINCOMES = true
+                    ORDER BY
+                    CA_NAME ASC
                 ]]>
             </Sentence>
         </Query>

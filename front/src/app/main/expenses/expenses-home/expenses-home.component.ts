@@ -1,8 +1,11 @@
-import { Component, OnInit, ElementRef} from "@angular/core";
+import { Component, OnInit, ElementRef } from "@angular/core";
 import * as moment from "moment";
 import { Expression, FilterExpressionUtils } from "ontimize-web-ngx";
-import { ViewChildren, QueryList , ViewChild} from "@angular/core";
-import { DiscreteBarChartConfiguration, OChartComponent } from "ontimize-web-ngx-charts";
+import { ViewChildren, QueryList, ViewChild } from "@angular/core";
+import {
+  DiscreteBarChartConfiguration,
+  OChartComponent,
+} from "ontimize-web-ngx-charts";
 
 @Component({
   selector: "app-expenses-home",
@@ -12,28 +15,25 @@ import { DiscreteBarChartConfiguration, OChartComponent } from "ontimize-web-ngx
 export class ExpensesHomeComponent implements OnInit {
   @ViewChildren("expenseTable") expenseTable: QueryList<any>;
   @ViewChild("discreteBar", { static: false }) discreteBar: OChartComponent;
-  @ViewChild("hiddenChart", { static: false }) hiddenChart: ElementRef;
+
   public selected = {};
   public date = [];
   sharedDataObject: { data: any[] } | null = { data: [] };
   protected chartParameters: DiscreteBarChartConfiguration;
+  showChart: boolean = true;
   //externalData : any[] | null = null;
- 
-  
-  
-  constructor() { }
 
-  ngOnInit() {  }
-    
+  constructor() {}
 
-   clearFilters(event) {
+  ngOnInit() {}
+
+  clearFilters(event) {
     this.expenseTable.first.reloadData();
   }
 
   getValue() {
     return this.selected;
   }
-
 
   public createFilter(values: Array<{ attr; value }>): Expression {
     let filters: Array<Expression> = [];
@@ -80,8 +80,7 @@ export class ExpensesHomeComponent implements OnInit {
       }
     });
 
-    if (filters.length > 0) {   
-    
+    if (filters.length > 0) {
       const filterExpression = filters.reduce((exp1, exp2) =>
         FilterExpressionUtils.buildComplexExpression(
           exp1,
@@ -93,22 +92,18 @@ export class ExpensesHomeComponent implements OnInit {
     } else {
       return null;
     }
-  
   }
 
-
-public dataFiltered(event){
-
-if(event.length === 0){
-//this.discreteBarNative.nativeElement.style.display = 'none'; 
-}
+  public dataFiltered(event) {
     this.sharedDataObject = { data: event };
-    //this.hiddenChart.nativeElement.style.display='none'; 
- 
- 
+    console.log(this.sharedDataObject);
 
- }
-  
-
+    if (event.length === 0) {
+      // Cuando no haya nada que mostrar
+      this.showChart = false;
+    } else {
+      // Cuando si
+      this.showChart = true;
+    }
+  }
 }
-
