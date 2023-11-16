@@ -33,5 +33,22 @@ export class GoalsHomeComponent implements OnInit {
     this.chartParameters = new PieChartConfiguration();
     this.chartParameters.labelType = "percent";
     this.chartParameters.legendPosition = "bottom";
+    this.chartParameters.color = [
+      "#ad6ba9",
+      "#bfd1d0",
+      "#B6B6FF",
+      "#FFE6B6",
+      "#FFB6B6",
+      "#E6B6FF",
+      "#B6E6FF",
+      "#FFB6E6",
+      "#B6FFE6",
+      "#FFD2B6",
+      "#D2FFB6",
+      "#D2B6FF",
+      "#B6D2FF",
+      "#e2cbd9",
+      "#c2a2c2",
+    ];
   }
 }

@@ -266,6 +266,7 @@ mat-dialog-container {
 .expense-table .mat-input-element {
   caret-color: rgba(192, 145, 145) !important;
 }
+
 .form-filter-container-expense
   .mat-form-field.mat-focused
   .mat-form-field-label,
@@ -352,6 +353,7 @@ mat-dialog-container {
   border: 2px solid var(--var-normal-color);
   border-radius: 10px !important;
 }
+
 .expense-table .mat-paginator button:hover {
   background-color: var(--var-expenses-hover);
 }
