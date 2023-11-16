@@ -15,10 +15,7 @@ export class IncomesHomeComponent implements OnInit {
   showChart: boolean = true;
   sharedDataObject: { data: any[] } | null = { data: [] };
   constructor() {
-    this.selected = {
-      startDate: moment("1993-01-01T00:00Z"),
-      endDate: moment(new Date()),
-    };
+    
   }
 
   ngOnInit() {}
@@ -30,11 +27,11 @@ export class IncomesHomeComponent implements OnInit {
     this.incomeTable.first.reloadData();
   }
 
-  createFilter(values: Array<{ attr; value }>): Expression {
+  public createFilter(values: Array<{ attr; value }>): Expression {
     let filters: Array<Expression> = [];
     values.forEach((fil) => {
       if (fil.value) {
-        if (fil.attr === "date_range") {
+        if (fil.attr === "date_range2") {
           filters.push(
             FilterExpressionUtils.buildExpressionMoreEqual(
               "MOV_DATE",
@@ -49,7 +46,7 @@ export class IncomesHomeComponent implements OnInit {
           );
         }
 
-        if (fil.attr === "CA_ID") {
+        if (fil.attr === "CA_ID" && fil.value.length > 0) {
           let valueArray = Array.from(fil.value);
           if (valueArray.length > 1) {
             let filterExpressions = valueArray.map((value) =>
@@ -76,13 +73,14 @@ export class IncomesHomeComponent implements OnInit {
     });
 
     if (filters.length > 0) {
-      return filters.reduce((exp1, exp2) =>
+      const filterExpression = filters.reduce((exp1, exp2) =>
         FilterExpressionUtils.buildComplexExpression(
           exp1,
           exp2,
           FilterExpressionUtils.OP_AND
         )
       );
+      return filterExpression;
     } else {
       return null;
     }
