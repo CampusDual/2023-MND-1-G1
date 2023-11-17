@@ -1,6 +1,6 @@
-<div class="container-register">
-  <div class="container-image"><img src="../../assets/images/logo/login-logo2.png" alt="ANT_LOGO"></div>
-  <form [formGroup]="loginForm" (ngSubmit)="register()" class="input-container">
+<!-- <div class="inner"> -->
+<form #registryForm [formGroup]="loginForm" (ngSubmit)="register()" class="input-container inner">
+  <div class="name-surname-cont">
     <mat-form-field>
       <input matInput #name placeholder="{{'NAME'|oTranslate}}" type="text" name="name" id="name"
         [formControl]="nameCtrl">
@@ -15,22 +15,26 @@
         {{'ERROR_LASTNAME_REQUIRED' | oTranslate}}
       </mat-error>
     </mat-form-field>
+  </div>
+  <div class="user-mail">
+    <mat-form-field>
+      <input matInput #user placeholder="{{'USERNAME'|oTranslate}}" id="username" [formControl]="userCtrl" />
+      <mat-error *ngIf="userCtrl.hasError('required')">
+        {{"ERROR_USER_REQUIRED" | oTranslate}}
+      </mat-error>
+    </mat-form-field>
     <mat-form-field>
       <input matInput #email placeholder="{{'EMAIL'|oTranslate}}" type="email" name="email" id="email"
         [formControl]="emailCtrl">
       <mat-error *ngIf="emailCtrl.hasError('required')">
         {{'ERROR_EMAIL_REQUIRED' | oTranslate}}
       </mat-error>
-      <div class="error-message">
+      <!-- <div class="error-message">
         {{ errorEmail | oTranslate }}
-      </div>
+      </div> -->
     </mat-form-field>
-    <mat-form-field>
-      <input matInput #user placeholder="{{'USERNAME'|oTranslate}}" id="username" [formControl]="userCtrl">
-      <mat-error *ngIf="userCtrl.hasError('required')">
-        {{'ERROR_USER_REQUIRED' | oTranslate}}
-      </mat-error>
-    </mat-form-field>
+  </div>
+  <div class="password-container">
     <mat-form-field>
       <input matInput #password type="password" placeholder="{{'PASSWORD'|oTranslate}}" id="password"
         [formControl]="pwdCtrl" [type]="showPassword ? 'text' : 'password'" minlength="8">
@@ -40,13 +44,28 @@
       <mat-error *ngIf="pwdCtrl.hasError('required')">
         {{'ERROR_PASS_REQUIRED' | oTranslate}}
       </mat-error>
-      <div class="error-message">
+      <!-- <div class="error-message">
         {{ errorPassword | oTranslate }}
-      </div>
+      </div> -->
     </mat-form-field>
-    <div class="error-message">
-      {{ respMessage | oTranslate }}
+  </div>
+  <div class="error-message">
+    {{ respMessage | oTranslate }}
+  </div>
+  <div class="bot-form-container">
+    <div (click)="volverAlLogin()" class="have-account">
+      <p>
+        {{"ALREADY_HAVE_ACCOUNT"| oTranslate}}
+      </p>
+      <p class="sign-up-here">{{"SIGN_IN"|
+        oTranslate}}</p>
     </div>
-    <button mat-raised-button type="submit" class="submit-btn">{{'REGISTER'|oTranslate}}</button>
-  </form>
-</div>
+    <div class="cont-submit-btn">
+      <button mat-raised-button type="submit" class="submit-btn">{{'REGISTER'|oTranslate}}</button>
+    </div>
+  </div>
+
+</form>
+
+<!-- <button mat-raised-button (click)="volverAlLogin()">RETURN_LOGIN</button> -->
+<!-- </div> -->

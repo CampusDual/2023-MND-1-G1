@@ -16,6 +16,8 @@ import {
   NavigationService,
 } from "ontimize-web-ngx";
 import { Observable } from "rxjs";
+import { RegisterComponent } from "../register/register.component";
+import { RegisterSharedService } from "../shared/register-shared.service";
 
 @Component({
   selector: "login",
@@ -24,6 +26,7 @@ import { Observable } from "rxjs";
   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit, AfterViewInit {
+  private validationsInstance: RegisterComponent;
   @ViewChild("user", { static: false })
   user: ElementRef<HTMLInputElement>;
   @ViewChild("password", { static: false })
@@ -34,6 +37,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   rightEye: ElementRef<HTMLImageElement>;
   private passwordLength = 0;
   private userLength = 0;
+  showRegister = false;
   loginForm: FormGroup = new FormGroup({});
   userCtrl: FormControl = new FormControl("", Validators.required);
   pwdCtrl: FormControl = new FormControl("", Validators.required);
@@ -65,7 +69,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ];
   protected timeoutId;
   protected currentImageIndex: number = 0;
+  warningMessagePass: String;
+  warningMessageEmail: String;
+  public showSandwich: boolean = false;
+  public customErrorMessage: string;
   router: Router;
+  errorMessage: string;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -73,7 +82,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     @Inject(NavigationService) public navigation: NavigationService,
     @Inject(AuthService) private authService: AuthService,
     @Inject(LocalStorageService) private localStorageService,
-    public injector: Injector
+    public injector: Injector,
+    private registerService: RegisterSharedService
   ) {
     this.router = router;
 
@@ -87,6 +97,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.sessionExpired = false;
         }
       }
+      this.showError();
     });
   }
   buttonTerms() {
@@ -96,7 +107,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     //PASSWORD
-
+    this.showError();
     this.password.nativeElement.addEventListener("input", (event) => {
       if (this.showPassword) {
         this.passwordLength = this.password.nativeElement.value.length;
@@ -161,6 +172,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): any {
+    this.showSandwich = false;
+
     this.navigation.setVisible(false);
 
     this.loginForm.addControl("username", this.userCtrl);
@@ -169,6 +182,37 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.router.navigate(["../"], { relativeTo: this.actRoute });
     } else {
       this.authService.clearSessionData();
+    }
+  }
+
+  showError() {
+    let emailErrorPresent = false;
+    let passwordErrorPresent = false;
+
+    this.registerService.getErrorEmail().subscribe((email) => {
+      emailErrorPresent = email.length > 1;
+      this.updateShowSandwich(emailErrorPresent, passwordErrorPresent);
+    });
+
+    this.registerService.getErrorPassword().subscribe((password) => {
+      passwordErrorPresent = password.length > 1;
+      this.updateShowSandwich(emailErrorPresent, passwordErrorPresent);
+    });
+  }
+
+  updateShowSandwich(emailError: boolean, passwordError: boolean) {
+    if (emailError && passwordError) {
+      this.showSandwich = true;
+      this.errorMessage = "ERROR_PASS_EMAIL";
+    } else if (emailError) {
+      this.showSandwich = true;
+      this.errorMessage = "ERROR_FORMAT_EMAIL";
+    } else if (passwordError) {
+      this.showSandwich = true;
+      this.errorMessage = "ERROR_LENGTH_PASSWORD";
+    } else {
+      this.showSandwich = false;
+      this.errorMessage = "";
     }
   }
 

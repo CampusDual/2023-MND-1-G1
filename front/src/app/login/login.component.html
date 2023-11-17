@@ -1,45 +1,81 @@
 <div class="full-page">
   <div class="container-main-form">
-    <div class="image-container">
-      <ng-container *ngIf="!showImage; else hiddenImage">
-        <img src="../../assets/images/logo/login-logo.png" alt="ANT_LOGO">
-        <img #leftEye src="../../assets/images/logo/left-eye.png" alt="LEFT_EYE" class="left-eye">
-        <img #rightEye src="../../assets/images/logo/right-eye.png" alt="RIGHT_EYE" class="right-eye">
-      </ng-container>
-      <ng-template #hiddenImage>
-        <img class="hidden-image" [src]="currentImage" alt="Hidden Image">
-      </ng-template>
-    </div>
-    <div class="login-title">
-      <img src="../../assets/images/logo/login-title.png" alt="">
-    </div>
-    <form [formGroup]="loginForm" (ngSubmit)="login()" class="input-container">
-      <mat-form-field>
-        <input matInput #user placeholder="{{'USERNAME'|oTranslate}}" id="username" [formControl]="userCtrl">
-        <mat-error *ngIf="userCtrl.hasError('required')">
-          {{'ERROR_USER_REQUIRED' | oTranslate}}
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput #password placeholder="{{'PASSWORD'|oTranslate}}" id="password" [formControl]="pwdCtrl"
-          [type]="showPassword ? 'text' : 'password'">
-        <mat-icon matSuffix class="icon-button login-input" (click)="togglePasswordVisibility()">
-          {{ showPassword ? 'visibility' : 'visibility_off' }}
-        </mat-icon>
-        <mat-error *ngIf="pwdCtrl.hasError('required')">
-          {{'ERROR_PASS_REQUIRED' | oTranslate}}
-        </mat-error>
-      </mat-form-field>
-
-      <div class="remeber_me">
-        <mat-checkbox>{{'REMEMBER_ME' | oTranslate}}</mat-checkbox>
+    <div>
+      <div *ngIf="showSandwich" class="message-box">
+        <span class="msg-text">{{ errorMessage | oTranslate }}</span>
       </div>
-      <button mat-raised-button type="submit" class="submit-btn">{{'LOGIN'|oTranslate}}</button>
-    </form>
-    <div class="term-container">
-      <p (click)="buttonTerms()">{{'PRIVACY_POLICY'| oTranslate}}</p>
-      <p (click)="buttonTerms()">{{'TERMS_AND_CONDITIONS'| oTranslate}}</p>
     </div>
-  </div>
+    <div class="container-form">
+      <div class="image-container">
+        <ng-container *ngIf="!showImage; else hiddenImage">
+          <img src="../../assets/images/logo/login-logo.png" alt="ANT_LOGO" />
+          <img #leftEye src="../../assets/images/logo/left-eye.png" alt="LEFT_EYE" class="left-eye" />
+          <img #rightEye src="../../assets/images/logo/right-eye.png" alt="RIGHT_EYE" class="right-eye" />
+        </ng-container>
+        <ng-template #hiddenImage>
+          <img class="hidden-image" [src]="currentImage" alt="Hidden Image" />
+        </ng-template>
+      </div>
+      <div class="login-title">
+        <img src="../../assets/images/logo/login-title.png" alt="" />
+      </div>
+      <div class="animation-container">
+        <div class="flip-card" [class.flip]="showRegister">
+          <div class="flip-card-front">
+            <div class="inner inner-login">
+              <form [formGroup]="loginForm" (ngSubmit)="login()" class="input-container">
+                <div class="top-form-container">
+                  <mat-form-field>
+                    <input matInput #user placeholder="{{ 'USERNAME' | oTranslate }}" id="username"
+                      [formControl]="userCtrl" />
+                    <mat-error *ngIf="userCtrl.hasError('required')">
+                      {{ "ERROR_USER_REQUIRED" | oTranslate }}
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput #password placeholder="{{ 'PASSWORD' | oTranslate }}" id="password"
+                      [formControl]="pwdCtrl" [type]="showPassword ? 'text' : 'password'" />
+                    <mat-icon matSuffix class="icon-button login-input" (click)="togglePasswordVisibility()">
+                      {{ showPassword ? "visibility" : "visibility_off" }}
+                    </mat-icon>
+                    <mat-error *ngIf="pwdCtrl.hasError('required')">
+                      {{ "ERROR_PASS_REQUIRED" | oTranslate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="bot-form-container">
+                  <div class="remeber_me dont-have-account">
+                    <!-- <mat-checkbox>{{ "REMEMBER_ME" | oTranslate }}</mat-checkbox> -->
+                    <p>
+                      {{ "DONT_HAVE_ACCOUNT" | oTranslate }}
+                    </p>
+                    <p (click)="showRegister = true" class="sign-up-here">{{"SIGN_UP_HERE" | oTranslate}}</p>
+                  </div>
+                  <div class="cont-submit-btn">
+                    <button mat-raised-button type="submit" class="submit-btn">
+                      {{ "LOGIN" | oTranslate }}
+                    </button>
+                  </div>
 
+                  <div class="term-container">
+                    <p (click)="buttonTerms()">
+                      {{ "PRIVACY_POLICY" | oTranslate }}
+                    </p>
+                    <p (click)="buttonTerms()">
+                      {{ "TERMS_AND_CONDITIONS" | oTranslate }}
+                    </p>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <app-register (volverLogin)="showRegister = false"></app-register>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- <button mat-raised-button (click)="showRegister = true">Registrarse</button> -->
 </div>
