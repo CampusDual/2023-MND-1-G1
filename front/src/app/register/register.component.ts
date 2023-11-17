@@ -86,7 +86,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     const isUserDataValid = Object.keys(userData).every(
       (key) => userData[key] != null && userData[key].length > 0
     );
-    const isPasswordValid = userData.PASSWORD.length > 8;
+    const isPasswordValid = userData.PASSWORD.length > 7;
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.EMAIL);
     this.errorEmail = isEmailValid ? "" : "ERROR_FORMAT_EMAIL";
     this.errorPassword = isPasswordValid ? "" : "ERROR_LENGTH_PASSWORD";
