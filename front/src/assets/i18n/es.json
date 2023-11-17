@@ -94,7 +94,7 @@
   "GOALS_LIST": "Lista de presupuestos",
   "GOALS_FORM": "Formulario de presupuestos",
   "GOAL_DETAIL": "Detalle del límite",
-  "REGISTER": "Registrarme ahora",
+  "REGISTER": "Registrarme",
   "DUPLICATE_KEY": "Este nombre de usuario ya existe, introduce uno diferente",
   "NONSPECIFIC_ERROR_INSERTION": "Ha ocurrido un error. Pruebe de nuevo, en caso de que el problema persista, por favor, contacte con el soporte de FinAnts.",
   "ERROR_LENGTH_PASSWORD": "La contraseña debe tener al menos 8 caracteres.",

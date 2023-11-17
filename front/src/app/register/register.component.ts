@@ -39,9 +39,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   constructor(
     protected injector: Injector,
-    private registerService: RegisterSharedService,
-    private router: Router,
-    private actRoute: ActivatedRoute
+    private registerService: RegisterSharedService
   ) {
     this.service = this.injector.get(OntimizeService);
   }
@@ -50,6 +48,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   volverAlLogin() {
     this.showSandwitch = false;
     this.registerService.setShowSandwitch(this.showSandwitch);
+    this.loginForm.clearValidators();
     this.loginForm.reset();
     this.volverLogin.emit();
   }
@@ -63,6 +62,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this.loginForm.addControl("lastname", this.lastnameCtrl);
     this.loginForm.addControl("email", this.emailCtrl);
   }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   confetti() {
     this.throwConfetti();
     this.volverAlLogin();
