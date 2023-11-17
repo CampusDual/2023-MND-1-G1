@@ -86,13 +86,13 @@
   "TOTAL_INCOME": "Ingreso total",
   "TOTAL_EXPENSE": "Gasto total",
   "TOTAL_EXPENSES_CATEGORIES": "Gastos del mes anterior por categorias",
-  "GOALS": "Objetivos",
-  "GOAL": "Objetivo",
+  "GOALS": "Presupuestos",
+  "GOAL": "Presupuesto",
   "SPENDING_LIMIT": "Límite de gasto",
-  "GOALS_NAME": "Nombre de límite",
-  "GOALS_NAMES": "Nombres de los límite",
-  "GOALS_LIST": "Lista de límites",
-  "GOALS_FORM": "Formulario de límites",
+  "GOALS_NAME": "Nombre del presupuesto",
+  "GOALS_NAMES": "Nombre",
+  "GOALS_LIST": "Lista de presupuestos",
+  "GOALS_FORM": "Formulario de presupuestos",
   "GOAL_DETAIL": "Detalle del límite",
   "REGISTER": "Registrarme ahora",
   "DUPLICATE_KEY": "Este nombre de usuario ya existe, introduce uno diferente",
@@ -115,5 +115,6 @@
   "GOAL_TOTAL_EXPENSE": "Gasto",
   "GOAL_PERCENTAGE_EXPENSE": "Gasto %",
   "EXPENSES_CHART": "Gráfica de gastos",
-  "INCOMES_CHART": "Gráfica de ingresos"
+  "INCOMES_CHART": "Gráfica de ingresos",
+  "SPENT_PROGRESS": "Progreso"
 }
