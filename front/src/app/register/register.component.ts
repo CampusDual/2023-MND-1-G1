@@ -45,22 +45,34 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {}
 
-  volverAlLogin() {
-    this.showSandwitch = false;
-    this.registerService.setShowSandwitch(this.showSandwitch);
-    this.loginForm.clearValidators();
-    this.loginForm.reset();
-    this.volverLogin.emit();
-  }
   ngOnInit() {
     const conf = this.service.getDefaultServiceConfiguration("app");
     this.service.configureService(conf);
-
     this.loginForm.addControl("username", this.userCtrl);
     this.loginForm.addControl("password", this.pwdCtrl);
     this.loginForm.addControl("name", this.nameCtrl);
     this.loginForm.addControl("lastname", this.lastnameCtrl);
     this.loginForm.addControl("email", this.emailCtrl);
+  }
+  volverAlLogin() {
+    this.showSandwitch = false;
+    this.registerService.setShowSandwitch(this.showSandwitch);
+    this.clearValidatorsAndResetForm();
+    this.volverLogin.emit();
+  }
+  private clearValidatorsAndResetForm() {
+    [
+      this.userCtrl,
+      this.pwdCtrl,
+      this.nameCtrl,
+      this.lastnameCtrl,
+      this.emailCtrl,
+    ].forEach((control) => {
+      control.clearValidators();
+      control.updateValueAndValidity();
+    });
+
+    this.loginForm.reset();
   }
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -86,6 +98,17 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       SURNAME: this.loginForm.get("lastname").value,
       EMAIL: this.loginForm.get("email").value,
     };
+    [
+      this.userCtrl,
+      this.pwdCtrl,
+      this.nameCtrl,
+      this.lastnameCtrl,
+      this.emailCtrl,
+    ].forEach((control) => {
+      control.setValidators([Validators.required]); // Establecer validador requerido
+      control.updateValueAndValidity();
+    });
+
     const isUserDataValid = Object.keys(userData).every(
       (key) => userData[key] != null && userData[key].length > 0
     );
