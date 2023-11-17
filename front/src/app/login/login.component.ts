@@ -18,6 +18,7 @@ import {
 import { Observable } from "rxjs";
 import { RegisterComponent } from "../register/register.component";
 import { RegisterSharedService } from "../shared/register-shared.service";
+import { log } from "util";
 
 @Component({
   selector: "login",
@@ -191,7 +192,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   showError() {
     let emailErrorPresent = false;
     let passwordErrorPresent = false;
-
+    let bothErrorPresent = false;
     this.registerService.getErrorEmail().subscribe((email) => {
       emailErrorPresent = email.length > 1;
       this.updateShowSandwich(emailErrorPresent, passwordErrorPresent);
@@ -201,6 +202,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       passwordErrorPresent = password.length > 1;
       this.updateShowSandwich(emailErrorPresent, passwordErrorPresent);
     });
+
     this.registerService.getShowSandwitch().subscribe((showSandwich) => {});
   }
 

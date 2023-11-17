@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 export class RegisterSharedService {
   private errorEmail = new BehaviorSubject<string>("");
   private errorPassword = new BehaviorSubject<string>("");
+  private errorBoth = new BehaviorSubject<string>("");
   private showSandwitch = new BehaviorSubject<boolean>(false);
 
   setErrorEmail(email: string) {
@@ -24,6 +25,14 @@ export class RegisterSharedService {
   getErrorPassword(): Observable<string> {
     return this.errorPassword.asObservable();
   }
+  setErrorBoth(errorBoth: string) {
+    this.errorBoth.next(errorBoth);
+  }
+
+  getErrorBoth(): Observable<string> {
+    return this.errorBoth.asObservable();
+  }
+
   setShowSandwitch(showSandwitch: boolean) {
     this.showSandwitch.next(showSandwitch);
     console.log(showSandwitch);

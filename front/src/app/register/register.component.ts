@@ -71,7 +71,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       control.clearValidators();
       control.updateValueAndValidity();
     });
-
+    this.errorEmail = undefined;
+    this.errorPassword = undefined;
     this.loginForm.reset();
   }
   togglePasswordVisibility() {
@@ -91,6 +92,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   }
 
   register() {
+    console.log(this.errorBoth);
+
     const userData = {
       USER_: this.loginForm.get("username").value,
       PASSWORD: this.loginForm.get("password").value,
@@ -105,7 +108,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       this.lastnameCtrl,
       this.emailCtrl,
     ].forEach((control) => {
-      control.setValidators([Validators.required]); // Establecer validador requerido
+      control.setValidators([Validators.required]);
       control.updateValueAndValidity();
     });
 
@@ -116,7 +119,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.EMAIL);
     this.errorEmail = isEmailValid ? "" : "ERROR_FORMAT_EMAIL";
     this.errorPassword = isPasswordValid ? "" : "ERROR_LENGTH_PASSWORD";
-
+    this.errorBoth =
+      isPasswordValid && isEmailValid ? "" : "ERROR_LENGTH_PASSWORD";
     if (isUserDataValid && isPasswordValid && isEmailValid) {
       this.service.insert(userData, "register").subscribe({
         next: (resp) => {
@@ -139,6 +143,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     } else {
       this.registerService.setErrorEmail(this.errorEmail);
       this.registerService.setErrorPassword(this.errorPassword);
+      this.registerService.setErrorBoth(this.errorBoth);
     }
   }
 }
