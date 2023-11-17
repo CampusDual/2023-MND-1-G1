@@ -1,5 +1,5 @@
-<ng-template #template let-cellvalue="cellvalue" let-rowvalue="rowvalue">
-  <mat-progress-bar [matTooltip]="rowvalue['GO_AMOUNT']" mode="determinate" [value]="rowvalue['GO_AMOUNT']"
-    [bufferValue]="rowvalue['GO_AMOUNT']">
+<ng-template #templateref let-cellvalue="cellvalue" let-rowvalue="rowvalue">
+  <mat-progress-bar #progressBar [matTooltip]=" rowvalue['TOTAL_EXPENSE'] " mode="determinate"
+    [value]=" rowvalue['PERCENTAGE_EXPENSE'] * 100" [bufferValue]="rowvalue['TOTAL_EXPENSE']">
   </mat-progress-bar>
 </ng-template>

@@ -5,10 +5,10 @@
 }
 
 .group-details-table-container {
-  flex: 1; 
+  flex: 1;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 15px;
 }
 .text-detail-group {
@@ -24,7 +24,7 @@
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   width: 30%;
   margin: 0 auto;
   text-align: center;
@@ -32,26 +32,25 @@
 
 .header-container {
   display: flex;
-  align-items: center; 
-  justify-content: center; 
-  
+  align-items: center;
+  justify-content: center;
 }
 
 .app-logo {
-  width: 50px; 
-  height: auto; 
-  margin-right: 10px; 
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
 }
 
 h1 {
-  margin: 0; 
+  margin: 0;
 }
 
 .payments-content {
   width: 100%;
 }
 
-.payer-title{
+.payer-title {
   font-size: 1.15em;
   padding: 3%;
 }
@@ -60,14 +59,13 @@ h1 {
   flex: 1 1 calc(50% - 10px);
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   margin-bottom: 15px;
   transition: box-shadow 0.3s ease;
-  
 }
 
 .o-list-item:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .o-list-item-text {
@@ -82,17 +80,15 @@ h1 {
   align-items: center;
   margin-bottom: 5px;
   color: #666;
-  min-width: 150px; 
+  min-width: 150px;
   text-align: center;
   justify-content: center;
 }
 
-
 .payment-detail:before {
-  content: '→';
+  content: "→";
   margin-right: 10px;
   color: #009688;
   font-weight: bold;
   align-items: center;
 }
-

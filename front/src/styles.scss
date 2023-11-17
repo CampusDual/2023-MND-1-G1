@@ -22,6 +22,12 @@
   border: none;
 }
 
+@-moz-document url-prefix() {
+  .mat-select-empty,
+  .mat-select {
+    padding-bottom: 6.4px !important;
+  }
+}
 .expense-table thead {
   background-color: var(--var-expense-color);
 }
@@ -370,4 +376,19 @@ mat-dialog-container {
 }
 .o-table .o-table-menu-button {
   display: none !important;
+}
+.filter-container-expense button mat-icon {
+  color: rgba(192, 145, 145, 1) !important;
+}
+
+.filter-container-expense button mat-icon:hover {
+  border-radius: 10px;
+  background-color: var(--var-expenses-hover) !important;
+}
+.filter-container-income button mat-icon {
+  color: rgba(145, 192, 158, 1) !important;
+}
+.filter-container-income button mat-icon:hover {
+  border-radius: 10px;
+  background-color: rgba(145, 192, 158, 0.2) !important;
 }
