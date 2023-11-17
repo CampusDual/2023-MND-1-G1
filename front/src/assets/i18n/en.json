@@ -97,8 +97,9 @@
   "NO_DATA_AVAILABLE": "No data available",
   "CHART_FILTER_BY_COLUMN.EMPTY_VALUE": "No results found",
   "GOAL_LIMIT": "Budget limit",
-  "GOAL_TOTAL_EXPENSE": "Spent amount",
+  "GOAL_TOTAL_EXPENSE": "Amount",
   "GOAL_PERCENTAGE_EXPENSE": "Spent %",
   "EXPENSES_CHART": "Expense chart",
-  "INCOMES_CHART": "Income chart"
+  "INCOMES_CHART": "Income chart",
+  "SPENT_PROGRESS": "Progress"
 }

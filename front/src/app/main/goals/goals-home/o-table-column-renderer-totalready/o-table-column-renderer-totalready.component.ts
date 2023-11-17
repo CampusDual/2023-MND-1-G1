@@ -5,7 +5,7 @@ import {
   TemplateRef,
   ViewChild,
 } from "@angular/core";
-import { OBaseTableCellRenderer, OPercentPipe } from "ontimize-web-ngx";
+import { OBaseTableCellRenderer, OCurrencyPipe } from "ontimize-web-ngx";
 
 @Component({
   selector: "app-o-table-column-renderer-totalready",
@@ -25,7 +25,7 @@ export class OTableColumnRendererTotalreadyComponent
   }
 
   setComponentPipe() {
-    this.componentPipe = new OPercentPipe(this.injector);
+    this.componentPipe = new OCurrencyPipe(this.injector);
   }
 
   ngOnInit() {

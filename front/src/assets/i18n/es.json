@@ -112,5 +112,6 @@
   "GOAL_TOTAL_EXPENSE": "Gasto",
   "GOAL_PERCENTAGE_EXPENSE": "Gasto %",
   "EXPENSES_CHART": "Gráfica de gastos",
-  "INCOMES_CHART": "Gráfica de ingresos"
+  "INCOMES_CHART": "Gráfica de ingresos",
+  "SPENT_PROGRESS": "Progreso"
 }

@@ -169,12 +169,20 @@ public class MovementService implements IMovementService {
     }
 
     @Override
-    public EntityResult totalExpensesForCategoriesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+    public EntityResult totalExpensesForCategoriesPreviousMonthQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         keyMap.put(MovementDao.ATTR_MOV_MONTH, LocalDate.now().minusMonths(1).getMonthValue());
         keyMap.put(MovementDao.ATTR_MOV_YEAR, LocalDate.now().minusMonths(1).getYear());
         Map<String, Object> keyMapFilterUser = new HashMap<>(keyMap);
         keyMapFilterUser.put(GoalDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.QUERY_TOTAL_EXPENSES_FOR_CATEGORIES);
     }
+
+    @Override
+    public EntityResult totalExpensesForCategoriesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        Map<String, Object> keyMapFilterUser = new HashMap<>(keyMap);
+        keyMapFilterUser.put(GoalDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.QUERY_TOTAL_EXPENSES_FOR_CATEGORIES);
+    }
+
 
 }
