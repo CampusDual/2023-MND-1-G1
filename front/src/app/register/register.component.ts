@@ -11,7 +11,8 @@ import {
 import { OntimizeService } from "ontimize-web-ngx";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { RegisterSharedService } from "../shared/register-shared.service";
-
+import { ActivatedRoute, Router } from "@angular/router";
+import confetti from "canvas-confetti";
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -26,6 +27,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   public errorEmail: string; //! ERROR DE MAIL
   public errorPassword: string; //! ERROR DE PASS
   public errorBoth: string; //! ERROR DE AMBOS
+  public showSandwitch: boolean = false;
   @ViewChild("registryForm", { static: false }) Form: ElementRef;
 
   loginForm: FormGroup = new FormGroup({});
@@ -37,27 +39,40 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   constructor(
     protected injector: Injector,
-    private registerService: RegisterSharedService
+    private registerService: RegisterSharedService,
+    private router: Router,
+    private actRoute: ActivatedRoute
   ) {
     this.service = this.injector.get(OntimizeService);
   }
   ngAfterViewInit(): void {}
+
   volverAlLogin() {
+    this.showSandwitch = false;
+    this.registerService.setShowSandwitch(this.showSandwitch);
     this.loginForm.reset();
     this.volverLogin.emit();
   }
   ngOnInit() {
     const conf = this.service.getDefaultServiceConfiguration("app");
     this.service.configureService(conf);
+
     this.loginForm.addControl("username", this.userCtrl);
     this.loginForm.addControl("password", this.pwdCtrl);
     this.loginForm.addControl("name", this.nameCtrl);
     this.loginForm.addControl("lastname", this.lastnameCtrl);
     this.loginForm.addControl("email", this.emailCtrl);
   }
+  confetti() {
+    this.throwConfetti();
+    this.volverAlLogin();
+  }
 
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+  throwConfetti() {
+    confetti({
+      particleCount: 250,
+      spread: 120,
+    });
   }
 
   register() {
@@ -75,13 +90,14 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.EMAIL);
     this.errorEmail = isEmailValid ? "" : "ERROR_FORMAT_EMAIL";
     this.errorPassword = isPasswordValid ? "" : "ERROR_LENGTH_PASSWORD";
-    this.errorBoth = isPasswordValid && isEmailValid ? "" : "ERROR_PASS_EMAIL";
+
     if (isUserDataValid && isPasswordValid && isEmailValid) {
       this.service.insert(userData, "register").subscribe({
         next: (resp) => {
           this.respMessage = "Registro realizado";
           this.Form.nativeElement.reset();
-          this.volverAlLogin();
+          this.showSandwitch = false;
+          this.confetti();
         },
         error: (error) => {
           console.log(error);

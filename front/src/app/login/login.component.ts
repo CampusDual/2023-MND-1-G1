@@ -106,6 +106,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     });
   }
   ngAfterViewInit(): void {
+    console.log("Vuelves al login");
     //PASSWORD
     this.showError();
     this.password.nativeElement.addEventListener("input", (event) => {
@@ -173,7 +174,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): any {
     this.showSandwich = false;
-
+    this.registerService.getShowSandwitch().subscribe((showSandwich) => {
+      this.showSandwich = showSandwich;
+    });
     this.navigation.setVisible(false);
 
     this.loginForm.addControl("username", this.userCtrl);
@@ -198,6 +201,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       passwordErrorPresent = password.length > 1;
       this.updateShowSandwich(emailErrorPresent, passwordErrorPresent);
     });
+    this.registerService.getShowSandwitch().subscribe((showSandwich) => {});
   }
 
   updateShowSandwich(emailError: boolean, passwordError: boolean) {
