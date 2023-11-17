@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this.loginForm.addControl("email", this.emailCtrl);
   }
   volverAlLogin() {
+    this.respMessage= ""; 
     this.showSandwitch = false;
     this.registerService.setShowSandwitch(this.showSandwitch);
     this.clearValidatorsAndResetForm();
@@ -124,7 +125,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     if (isUserDataValid && isPasswordValid && isEmailValid) {
       this.service.insert(userData, "register").subscribe({
         next: (resp) => {
-          this.respMessage = "Registro realizado";
           this.Form.nativeElement.reset();
           this.showSandwitch = false;
           this.confetti();

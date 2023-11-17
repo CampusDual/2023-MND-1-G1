@@ -78,4 +78,5 @@ button.submit-btn:hover {
 
 .error-message {
   font-size: smaller;
+  color: red;
 }

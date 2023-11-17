@@ -29,9 +29,6 @@
       <mat-error *ngIf="emailCtrl.hasError('required')">
         {{'ERROR_EMAIL_REQUIRED' | oTranslate}}
       </mat-error>
-      <!-- <div class="error-message">
-        {{ errorEmail | oTranslate }}
-      </div> -->
     </mat-form-field>
   </div>
   <div class="password-container">
@@ -44,13 +41,7 @@
       <mat-error *ngIf="pwdCtrl.hasError('required')">
         {{'ERROR_PASS_REQUIRED' | oTranslate}}
       </mat-error>
-      <!-- <div class="error-message">
-        {{ errorPassword | oTranslate }}
-      </div> -->
     </mat-form-field>
-  </div>
-  <div class="error-message">
-    {{ respMessage | oTranslate }}
   </div>
   <div class="bot-form-container">
     <div (click)="volverAlLogin()" class="have-account">
@@ -59,6 +50,9 @@
       </p>
       <p class="sign-up-here">{{"SIGN_IN"|
         oTranslate}}</p>
+    </div>
+    <div class="error-message">
+      {{ respMessage | oTranslate }}
     </div>
     <div class="cont-submit-btn">
       <button mat-raised-button type="submit" class="submit-btn">{{'REGISTER'|oTranslate}}</button>
