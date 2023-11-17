@@ -87,6 +87,7 @@ export class ExpensesNewComponent implements OnInit {
     }
   }
   onInsert() {
+    this.oForm.clearData();
     this.dialogRef.close();
   }
 }
