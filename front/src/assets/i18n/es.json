@@ -18,6 +18,7 @@
   "ERROR_NAME_REQUIRED": "Introduce tu nombre",
   "ERROR_LASTNAME_REQUIRED": "Introduce tus apellidos",
   "ERROR_EMAIL_REQUIRED": "Email incorrecto",
+  "ERROR_DUPLICATE_USER": "El usuario ya existe, por favor, introduzca otro diferente",
   "DONT_HAVE_ACCOUNT": "¿No tienes cuenta?",
   "SIGN_UP_HERE": "Regístrate aquí",
   "ALREADY_HAVE_ACCOUNT": "¿Ya tienes cuenta?",

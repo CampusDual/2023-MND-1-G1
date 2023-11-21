@@ -1,10 +1,3 @@
-/* .inner {
-  background-color: antiquewhite;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-} */
-
 form {
   height: 100%;
   width: 100%;
@@ -13,25 +6,11 @@ form {
 mat-form-field {
   display: block;
 }
-.password-container {
-  width: 350px;
-}
 
-.user-mail {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: stretch;
-  flex-direction: row;
+.input-box {
   gap: 10px;
-}
-.name-surname-cont {
-  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: stretch;
-  flex-direction: row;
-  gap: 10px;
 }
 .bot-form-container {
   display: flex;
@@ -79,4 +58,9 @@ button.submit-btn:hover {
 .error-message {
   font-size: smaller;
   color: red;
+}
+
+.color-animation {
+  border: 1px solid red;
+  width: 100%;
 }

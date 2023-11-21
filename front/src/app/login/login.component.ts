@@ -16,9 +16,7 @@ import {
   NavigationService,
 } from "ontimize-web-ngx";
 import { Observable } from "rxjs";
-import { RegisterComponent } from "../register/register.component";
-import { RegisterSharedService } from "../shared/register-shared.service";
-import { log } from "util";
+import { AnimacionService } from "../shared/animacion.service";
 
 @Component({
   selector: "login",
@@ -27,55 +25,24 @@ import { log } from "util";
   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit, AfterViewInit {
-  private validationsInstance: RegisterComponent;
   @ViewChild("user", { static: false })
   user: ElementRef<HTMLInputElement>;
   @ViewChild("password", { static: false })
   password: ElementRef<HTMLInputElement>;
-  @ViewChild("leftEye", { static: false })
-  leftEye: ElementRef<HTMLImageElement>;
-  @ViewChild("rightEye", { static: false })
-  rightEye: ElementRef<HTMLImageElement>;
-  private passwordLength = 0;
-  private userLength = 0;
-  showRegister = false;
+  public showRegister = false;
   loginForm: FormGroup = new FormGroup({});
   userCtrl: FormControl = new FormControl("", Validators.required);
   pwdCtrl: FormControl = new FormControl("", Validators.required);
   sessionExpired = false;
   protected showPassword = false;
-  protected showImage = false;
-  protected currentImage: string;
-  protected imagePaths: string[] = [
-    "../../assets/images/logo/Animacion/login-logo-fr1.png",
-    "../../assets/images/logo/Animacion/login-logo-fr2.png",
-    "../../assets/images/logo/Animacion/login-logo-fr3.png",
-    "../../assets/images/logo/Animacion/login-logo-fr4.png",
-    "../../assets/images/logo/Animacion/login-logo-fr5.png",
-    "../../assets/images/logo/Animacion/login-logo-fr6.png",
-    "../../assets/images/logo/Animacion/login-logo-fr7.png",
-    "../../assets/images/logo/Animacion/login-logo-fr8.png",
-    "../../assets/images/logo/Animacion/login-logo-fr9.png",
-  ];
-  protected reverseImage: string[] = [
-    "../../assets/images/logo/Animacion/login-logo-fr9.png",
-    "../../assets/images/logo/Animacion/login-logo-fr8.png",
-    "../../assets/images/logo/Animacion/login-logo-fr7.png",
-    "../../assets/images/logo/Animacion/login-logo-fr6.png",
-    "../../assets/images/logo/Animacion/login-logo-fr5.png",
-    "../../assets/images/logo/Animacion/login-logo-fr4.png",
-    "../../assets/images/logo/Animacion/login-logo-fr3.png",
-    "../../assets/images/logo/Animacion/login-logo-fr2.png",
-    "../../assets/images/logo/Animacion/login-logo-fr1.png",
-  ];
-  protected timeoutId;
-  protected currentImageIndex: number = 0;
   warningMessagePass: String;
   warningMessageEmail: String;
   public showSandwich: boolean = false;
   public customErrorMessage: string;
   router: Router;
   errorMessage: string;
+  respMessage: string;
+  duplicateUser: boolean = false;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -84,7 +51,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     @Inject(AuthService) private authService: AuthService,
     @Inject(LocalStorageService) private localStorageService,
     public injector: Injector,
-    private registerService: RegisterSharedService
+    private animacionService: AnimacionService
   ) {
     this.router = router;
 
@@ -98,7 +65,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.sessionExpired = false;
         }
       }
-      this.showError();
     });
   }
   buttonTerms() {
@@ -106,119 +72,31 @@ export class LoginComponent implements OnInit, AfterViewInit {
       relativeTo: this.actRoute,
     });
   }
-  ngAfterViewInit(): void {
-    console.log("Vuelves al login");
-    //PASSWORD
-    this.showError();
-    this.password.nativeElement.addEventListener("input", (event) => {
-      if (this.showPassword) {
-        this.passwordLength = this.password.nativeElement.value.length;
-      } else {
-        this.passwordLength = 0;
-      }
-      this.updateEyeTransforms(this.passwordLength);
-    });
-    this.password.nativeElement.addEventListener("focus", (event) => {
-      if (this.showPassword) {
-        this.passwordLength = this.password.nativeElement.value.length;
-      } else {
-        //console.log("this.showImage: " + this.showImage);
-        this.currentImageIndex = 0;
-        this.updateImage();
-        this.showImage = true;
-        this.passwordLength = 0;
-      }
+  ngAfterViewInit(): void {}
 
-      this.updateEyeTransforms(this.passwordLength);
-    });
-
-    //USER
-    this.user.nativeElement.addEventListener("input", (event) => {
-      this.userLength = this.user.nativeElement.value.length;
-      this.resetEyeTransform();
-      this.updateEyeTransforms(this.userLength);
-    });
-
-    this.user.nativeElement.addEventListener("focus", (event) => {
-      this.userLength = this.user.nativeElement.value.length;
-      this.updateEyeTransforms(this.userLength);
-    });
-    this.password.nativeElement.addEventListener("blur", () => {
-      //console.log("this.showImage: " + this.showImage);
-      if (this.showPassword) {
-        this.resetEyeTransform();
-      } else {
-        this.currentImageIndex = 0;
-        this.reverseAnimation();
-      }
-    });
-
-    this.user.nativeElement.addEventListener("blur", () => {
-      this.resetEyeTransform();
-    });
+  onUserInputChanged(id, value) {
+    this.animacionService.onInputChanged(id, value);
   }
 
-  updateEyeTransforms(length) {
-    let startPosition = -4;
-    const maxEyeX = 3 * 0.6; // Establece el límite máximo para la transformación
-
-    const leftEyeX = Math.min(startPosition + length * 0.6, maxEyeX);
-    const rightEyeX = Math.min(startPosition + length * 0.6, maxEyeX);
-    this.leftEye.nativeElement.style.transform = `translateX(${leftEyeX}px)`;
-    this.rightEye.nativeElement.style.transform = `translateX(${rightEyeX}px)`;
+  onUserFocusChanged(id, isFocused) {
+    this.animacionService.onFocusChanged(id, isFocused);
   }
-  resetEyeTransform() {
-    // Restablecer la transformación de los ojos a su posición inicial
-    this.leftEye.nativeElement.style.transform = "translateX(0)";
-    this.rightEye.nativeElement.style.transform = "translateX(0)";
+
+  onBlurChanged(id, isBlurred) {
+    this.animacionService.onBlurChanged(id, isBlurred);
   }
 
   ngOnInit(): any {
     this.showSandwich = false;
-    this.registerService.getShowSandwitch().subscribe((showSandwich) => {
-      this.showSandwich = showSandwich;
-    });
     this.navigation.setVisible(false);
 
     this.loginForm.addControl("username", this.userCtrl);
     this.loginForm.addControl("password", this.pwdCtrl);
+
     if (this.authService.isLoggedIn()) {
       this.router.navigate(["../"], { relativeTo: this.actRoute });
     } else {
       this.authService.clearSessionData();
-    }
-  }
-
-  showError() {
-    let emailErrorPresent = false;
-    let passwordErrorPresent = false;
-    let bothErrorPresent = false;
-    this.registerService.getErrorEmail().subscribe((email) => {
-      emailErrorPresent = email.length > 1;
-      this.updateShowSandwich(emailErrorPresent, passwordErrorPresent);
-    });
-
-    this.registerService.getErrorPassword().subscribe((password) => {
-      passwordErrorPresent = password.length > 1;
-      this.updateShowSandwich(emailErrorPresent, passwordErrorPresent);
-    });
-
-    this.registerService.getShowSandwitch().subscribe((showSandwich) => {});
-  }
-
-  updateShowSandwich(emailError: boolean, passwordError: boolean) {
-    if (emailError && passwordError) {
-      this.showSandwich = true;
-      this.errorMessage = "ERROR_PASS_EMAIL";
-    } else if (emailError) {
-      this.showSandwich = true;
-      this.errorMessage = "ERROR_FORMAT_EMAIL";
-    } else if (passwordError) {
-      this.showSandwich = true;
-      this.errorMessage = "ERROR_LENGTH_PASSWORD";
-    } else {
-      this.showSandwich = false;
-      this.errorMessage = "";
     }
   }
 
@@ -246,32 +124,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
-  }
-  updateImage() {
-    this.currentImage = this.imagePaths[this.currentImageIndex];
-    this.currentImageIndex =
-      (this.currentImageIndex + 1) % this.imagePaths.length;
-
-    if (this.currentImageIndex === 0) {
-      // Cuando llega al final del arreglo, mantén el índice en la última imagen
-      this.currentImageIndex = this.imagePaths.length - 1;
-      clearTimeout(this.timeoutId);
-    } else {
-      this.timeoutId = setTimeout(() => this.updateImage(), 60);
-    }
-  }
-  reverseAnimation() {
-    this.currentImage = this.reverseImage[this.currentImageIndex];
-    // Usar el arreglo reverseImage en lugar de imagePaths
-    this.currentImageIndex =
-      (this.currentImageIndex + 1) % this.reverseImage.length;
-
-    if (this.currentImageIndex === 0) {
-      this.currentImageIndex = this.reverseImage.length - 1;
-      clearTimeout(this.timeoutId);
-      this.showImage = false;
-    } else {
-      this.timeoutId = setTimeout(() => this.reverseAnimation(), 60);
-    }
+    this.animacionService.onShowPassword(this.showPassword);
   }
 }

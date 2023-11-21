@@ -18,6 +18,7 @@
   "ERROR_NAME_REQUIRED": "First name is required",
   "ERROR_LASTNAME_REQUIRED": "Last name is required",
   "ERROR_EMAIL_REQUIRED": "Incorrect email",
+  "ERROR_DUPLICATE_USER": "This user name already exists, enter a different one",
   "DONT_HAVE_ACCOUNT": "You don't have account?",
   "SIGN_UP_HERE": "Sign up here",
   "REMEMBER_ME": "Remember me",
