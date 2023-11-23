@@ -25,9 +25,10 @@
 @-moz-document url-prefix() {
   .mat-select-empty,
   .mat-select {
-    padding-bottom: 6.4px !important;
+    margin-bottom: 6.4px !important;
   }
 }
+
 .expense-table thead {
   background-color: var(--var-expense-color);
 }
@@ -226,10 +227,6 @@ mat-dialog-container {
 }
 .close-button {
   border-radius: 50% !important;
-}
-.mat-select-empty,
-.mat-select {
-  padding-bottom: 6.6px !important;
 }
 
 .expenses-form-new-buttons .o-form-toolbar-button-cancel,
