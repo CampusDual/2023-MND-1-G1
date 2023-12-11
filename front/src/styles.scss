@@ -2,12 +2,12 @@
 :root {
   --var-expense-color: rgba(192, 145, 145);
   --var-income-color: rgba(145, 192, 158);
-  --var-normal-color: rgba(88, 180, 183);
+  --var-normal-color: rgb(61, 8, 255); //encanzado grupo
   --var-expenses-hover: rgba(247, 94, 80, 0.2);
   --var-goals-color: rgba(173, 107, 169);
 }
 
-.container-margin {
+.container-margin { //añadir ingresos y gastos
   margin: 0 20px;
 }
 .input-padding {
@@ -49,17 +49,18 @@ mat-dialog-container {
   border-radius: 0 !important;
 }
 .o-form-toolbar button:not([disabled]).mat-button-base.mat-primary {
-  background-color: white !important;
+  background-color: rgb(247, 247, 247) !important; //botón guardar grupo
 }
 
 .o-form-toolbar button:not([disabled]).mat-button-base.mat-primary:hover {
-  background-color: #deece2 !important;
+  background-color: #a710ff !important;
   border: none;
 }
 .mat-drawer-opened .o-app-sidenav-image .o-app-sidenav-image-container {
-  padding-bottom: 20px;
+  padding-bottom: 20px; //espacio icono y botones margen
 }
 .o-form-layout-tabgroup .mat-tab-group .mat-tab-body-wrapper {
+  color: #a710ff;
   border-radius: 0 10px 10px 10px;
 }
 
@@ -75,7 +76,7 @@ mat-dialog-container {
 }
 .mat-sort-header-button,
 .mat-footer-cell {
-  color: white !important;
+  color: white !important; //Color letra encabezado 
 }
 
 .mat-cell {

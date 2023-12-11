@@ -3,17 +3,17 @@
 @include mat-core();
 $mat-custom-primary: (
   50: #f2f7f3,
-  100: #deece2,
-  200: #c8e0cf,
-  300: #b2d3bb,
-  400: #a2c9ad,
-  500: #91c09e,
+  100: rgba(123, 223, 160, 0.81), //Categoría seleccionada
+  200: #2600ff,
+  300: #7b07ff,
+  400: #ff0000,
+  500: rgba(255, 221, 199, 1), // esta es la maravillosa barra de navegación de los huevos
   600: #89ba96,
   700: #7eb28c,
   800: #74aa82,
   900: #629c70,
-  A100: #ffffff,
-  A200: #daffe3,
+  A100: #b4ff05,
+  A200: #0026ff,
   A400: #a7ffbc,
   A700: #8dffa9,
   contrast: (
@@ -35,20 +35,20 @@ $mat-custom-primary: (
 );
 
 $mat-custom-accent: (
-  50: #f2f7f3,
-  100: #deece2,
-  200: #c8e0cf,
+  50: #ff0000,
+  100: #f811f8,
+  200: #f73100,
   300: #b2d3bb,
   400: #a2c9ad,
   500: #91c09e,
   600: #89ba96,
   700: #7eb28c,
-  800: #74aa82,
+  800: #1eff00,
   900: #629c70,
-  A100: #ffffff,
-  A200: #daffe3,
-  A400: #a7ffbc,
-  A700: #8dffa9,
+  A100: #b300fa,
+  A200: #ae00ff,
+  A400: #ffe600,
+  A700: #f705ff,
   contrast: (
     50: #000000,
     100: #000000,
