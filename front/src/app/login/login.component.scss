@@ -99,12 +99,12 @@
 .container-main-form {
   position: relative;
   width: 500px;
-  height: 630px;
+  height: 730px;
   display: grid;
   grid-template-rows: 10px 1fr;
   border-radius: 10px;
-  background-color: rgba(145, 192, 158, 0.5);
-  box-shadow: 2px 2px 5px 0 rgba(145, 192, 158, 1);
+  background-color: rgba(255, 221, 199,1);
+  box-shadow: 2px 2px 5px 0 rgba(255, 221, 199,1);
 }
 .container-form {
   display: flex;
@@ -142,13 +142,13 @@
   gap: 10px;
 }
 .container-main-form .mat-form-field.mat-focused .mat-form-field-ripple {
-  background-color: rgb(63, 130, 133);
+  background-color: rgba(45, 138, 79, 0.81);
 }
 .container-main-form .mat-input-element {
-  caret-color: rgb(63, 130, 133) !important;
+  caret-color: rgba(123, 223, 160, 0.81) !important;
 }
 .mat-form-field.mat-focused .mat-form-field-label {
-  color: rgb(63, 130, 133);
+  color: rgba(45, 138, 79, 0.81);
   font-size: 18px;
   font-weight: bold;
 }
@@ -184,7 +184,7 @@ mat-icon.login-input {
 button.submit-btn {
   color: white;
   font-size: 1.1rem;
-  background-color: rgb(63, 130, 133);
+  background-color: rgba(123, 223, 160, 1);
   height: 48px;
   width: 100%;
   margin-top: 20px;
@@ -192,8 +192,8 @@ button.submit-btn {
   border-radius: 10px;
 }
 button.submit-btn:hover {
-  background-color: rgb(63, 130, 133, 0.8);
-  box-shadow: 2px 2px 5px 0 rgba(63, 130, 133, 2);
+  background-color: rgba(123, 223, 160,0.7);
+  box-shadow: 2px 2px 5px 0 rgba(18, 34, 24, 0.81);
 }
 .term-container {
   display: flex;
@@ -254,7 +254,7 @@ button.submit-btn:hover {
   width: 350px;
   min-height: 390px;
   height: auto;
-  background-color: #c2d9c8;
+  background-color: rgba(255, 221, 199,1);
   backface-visibility: hidden;
   transform-style: preserve-3d;
   -webkit-transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);

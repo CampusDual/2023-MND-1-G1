@@ -12,6 +12,7 @@ import { BocadilloComponent } from "./bocadillo/bocadillo.component";
   imports: [SharedModule, OntimizeWebModule, LoginRoutingModule],
   declarations: [
     LoginComponent,
+    
     TermsComponent,
     AnimacionComponent,
     RegisterComponent,
