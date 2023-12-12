@@ -59,6 +59,9 @@ mat-dialog-container {
 .mat-drawer-opened .o-app-sidenav-image .o-app-sidenav-image-container {
   padding-bottom: 20px; //espacio icono y botones margen
 }
+.o-app-header nav{
+  background-color: rgba(255, 221, 199, 1);
+}
 .o-form-layout-tabgroup .mat-tab-group .mat-tab-body-wrapper {
   color: #a710ff;
   border-radius: 0 10px 10px 10px;
