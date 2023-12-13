@@ -6,6 +6,27 @@
   --var-expenses-hover: rgba(247, 94, 80, 0.2);
   --var-goals-color: rgba(173, 107, 169);
 }
+@media screen and (max-width: 430px){
+  .box-balance {
+    height: 100%;
+  }
+  .cont-balance {
+    max-width: 20%;
+    min-width: 300px;
+    flex-wrap: nowrap;
+  }
+  
+  
+  .filter-container{
+      max-width: 330px;
+    }
+    .filter-container, .o-form{
+      max-width: 330px;
+    }
+    
+  
+}
+
 
 .container-margin { //añadir ingresos y gastos
   margin: 0 20px;
