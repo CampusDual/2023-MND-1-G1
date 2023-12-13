@@ -9,6 +9,7 @@
 @media screen and (max-width: 430px){
   .box-balance {
     height: 100%;
+    max-width: 330px;
   }
   .cont-balance {
     max-width: 20%;
@@ -23,8 +24,9 @@
     .filter-container, .o-form{
       max-width: 330px;
     }
-    
-  
+   .table-container{
+      max-width: 330px;
+    }
 }
 
 
