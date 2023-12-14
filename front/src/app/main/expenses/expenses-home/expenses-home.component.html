@@ -70,77 +70,85 @@
     </o-form>
   </div>
 
-  {{ currentBreakpoint }}
-
-  <div class="container" [ngSwitch]="currentBreakpoint">
-    <span class="large" *ngSwitchCase="Breakpoints.Large"> Large </span>
-    <span class="medium" *ngSwitchCase="Breakpoints.Medium"> Medium </span>
-    <span class="small" *ngSwitchCase="Breakpoints.Small"> Small </span>
-    <span class="custom" *ngSwitchCase="'(min-width: 500px)'"> Custom </span>
-  </div>
 
   <!--Tabla y chart-->
   <div class="table-chart-container">
     <!--Tabla-->
-    <div class="table-container">
-      <div class="table-title">
-        <h3>{{ "EXPENSE_LIST" | oTranslate }}</h3>
+    <div class="container" [ngSwitch]="currentBreakpoint">
+      <span class="large" *ngSwitchDefault>    <div class="table-container">
+        <div class="table-title">
+          <h3>{{ "EXPENSE_LIST" | oTranslate }}</h3>
+        </div>
+        <div class="expense-table">
+          <o-form-layout-manager mode="dialog">
+            <o-form-layout-dialog-options
+              width="880px"
+              height="580px"
+            ></o-form-layout-dialog-options>
+            <o-table
+              #expenseTable
+              attr="expenseTable"
+              service="movements"
+              entity="expensesForCategories"
+              keys="MOV_ID"
+              columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME"
+              visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME"
+              virtual-scroll="no"
+              delete-button="no"
+              refresh-button="false"
+              (onDataLoaded)="dataFiltered($event)"
+              sort-columns="MOV_DATE:DESC"
+              resizable="false"
+            >
+              <o-table-paginator page-size-options="14"></o-table-paginator>
+              <o-table-column
+                attr="CA_NAME"
+                title="CATEGORY"
+                content-align="center"
+              ></o-table-column>
+              <o-table-column
+                attr="MOV_CONCEPT"
+                title="CONCEPT"
+                content-align="center"
+              ></o-table-column>
+              <o-table-column
+                attr="MOV_AMOUNT"
+                title="AMOUNT"
+                type="currency"
+                currency-symbol="€"
+                currency-symbol-position="right"
+                content-align="center"
+              ></o-table-column>
+              <o-table-column
+                attr="MOV_DATE"
+                title="DATE"
+                type="date"
+                format="L"
+              ></o-table-column>
+              <o-table-column
+                attr="GR_NAME"
+                title="GROUP"
+                content-align="center"
+              ></o-table-column>
+            </o-table>
+          </o-form-layout-manager>
+        </div>
+      </div> </span>
+      <span class="custom" *ngSwitchCase="'(min-width: 200px)'"> 
+        <div class="lista">
+          <o-list #list attr="expenseslist" title="Gastos" service="movements" entity="expensesForCategories"
+          keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME">
+          <o-list-item *ngFor="let row of list.dataArray">
+            <o-list-item-text #item title="{{ row.MOV_CONCEPT }}" primary-text="{{ row.CA_NAME }}"
+              secondary-text="{{ row.MOV_AMOUNT }}">
+            </o-list-item-text>
+          </o-list-item>
+        </o-list>
       </div>
-      <div class="expense-table">
-        <o-form-layout-manager mode="dialog">
-          <o-form-layout-dialog-options
-            width="880px"
-            height="580px"
-          ></o-form-layout-dialog-options>
-          <o-table
-            #expenseTable
-            attr="expenseTable"
-            service="movements"
-            entity="expensesForCategories"
-            keys="MOV_ID"
-            columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME"
-            visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME"
-            virtual-scroll="no"
-            delete-button="no"
-            refresh-button="false"
-            (onDataLoaded)="dataFiltered($event)"
-            sort-columns="MOV_DATE:DESC"
-            resizable="false"
-          >
-            <o-table-paginator page-size-options="14"></o-table-paginator>
-            <o-table-column
-              attr="CA_NAME"
-              title="CATEGORY"
-              content-align="center"
-            ></o-table-column>
-            <o-table-column
-              attr="MOV_CONCEPT"
-              title="CONCEPT"
-              content-align="center"
-            ></o-table-column>
-            <o-table-column
-              attr="MOV_AMOUNT"
-              title="AMOUNT"
-              type="currency"
-              currency-symbol="€"
-              currency-symbol-position="right"
-              content-align="center"
-            ></o-table-column>
-            <o-table-column
-              attr="MOV_DATE"
-              title="DATE"
-              type="date"
-              format="L"
-            ></o-table-column>
-            <o-table-column
-              attr="GR_NAME"
-              title="GROUP"
-              content-align="center"
-            ></o-table-column>
-          </o-table>
-        </o-form-layout-manager>
-      </div>
+        
+         </span>
     </div>
+
 
     <!--Chart-->
     <div class="chart-container">

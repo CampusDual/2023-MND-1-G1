@@ -17,7 +17,6 @@
     flex-wrap: nowrap;
   }
   
-  
   .filter-container{
       max-width: 330px;
     }
@@ -28,6 +27,15 @@
       max-width: 330px;
     }
 }
+
+#list {
+  width: 412px;
+height: 60px;
+flex-shrink: 0;
+  border-radius: 8px;
+  background: rgba(255, 144, 133, 0.45);
+}
+
 
 
 .container-margin { //añadir ingresos y gastos

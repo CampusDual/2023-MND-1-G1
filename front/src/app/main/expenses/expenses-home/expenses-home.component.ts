@@ -22,7 +22,7 @@ export class ExpensesHomeComponent implements OnInit {
   currentBreakpoint: string = '';
 
   readonly breakpoint$ = this.breakpointObserver
-    .observe([Breakpoints.Large, Breakpoints.Medium, Breakpoints.Small, '(min-width: 500px)'])
+    .observe([Breakpoints.Large, Breakpoints.Medium, Breakpoints.Small, '(min-width: 200px)'])
     .pipe(
       tap(value => console.log(value)),
       distinctUntilChanged()
@@ -47,12 +47,8 @@ export class ExpensesHomeComponent implements OnInit {
   private breakpointChanged() {
     if (this.breakpointObserver.isMatched(Breakpoints.Large)) {
       this.currentBreakpoint = Breakpoints.Large;
-    } else if (this.breakpointObserver.isMatched(Breakpoints.Medium)) {
-      this.currentBreakpoint = Breakpoints.Medium;
-    } else if (this.breakpointObserver.isMatched(Breakpoints.Small)) {
-      this.currentBreakpoint = Breakpoints.Small;
-    } else if (this.breakpointObserver.isMatched('(min-width: 500px)')) {
-      this.currentBreakpoint = '(min-width: 500px)';
+    } else if (this.breakpointObserver.isMatched('(min-width: 200px)')) {
+      this.currentBreakpoint = '(min-width: 200px)';
     }
   }
 
