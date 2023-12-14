@@ -6,38 +6,26 @@
   --var-expenses-hover: rgba(247, 94, 80, 0.2);
   --var-goals-color: rgba(173, 107, 169);
 }
-@media screen and (max-width: 430px){
-  .box-balance {
-    height: 100%;
-    max-width: 330px;
-  }
-  .cont-balance {
-    max-width: 20%;
-    min-width: 300px;
-    flex-wrap: nowrap;
-  }
-  
-  .filter-container{
-      max-width: 330px;
-    }
-    .filter-container, .o-form{
-      max-width: 330px;
-    }
-   .table-container{
-      max-width: 330px;
-    }
-}
 
-.o-list-item .mat-list-item{
+
+.o-list-item {
   border-radius: 8px;
 background: rgba(255, 144, 133, 0.45);
 margin-top: 10px;
-
 }
-.o-list-item-text{
-  text-align: left;
 
+
+.custom-card,span{
+  display:inline-block;
+  position: relative;
+  margin-right: 20px;
+  
 }
+.custom-card{
+  align-content:flex-end;
+  margin-block: 10px;
+}
+
 
 
 
