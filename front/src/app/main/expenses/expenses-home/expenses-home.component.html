@@ -134,17 +134,16 @@
           </o-form-layout-manager>
         </div>
       </div> </span>
-      <span class="custom" *ngSwitchCase="'(min-width: 200px)'"> 
-        <div class="lista">
+      <span class="custom" *ngSwitchCase="'(min-width: 200px)'">  
           <o-list #list attr="expenseslist" title="Gastos" service="movements" entity="expensesForCategories"
           keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME">
           <o-list-item *ngFor="let row of list.dataArray">
-            <o-list-item-text #item title="{{ row.MOV_CONCEPT }}" primary-text="{{ row.CA_NAME }}"
-              secondary-text="{{ row.MOV_AMOUNT }}">
+            <o-list-item-text #item  primary-text= " Concepto:&nbsp;&nbsp; {{row.MOV_CONCEPT}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Categoria: &nbsp;&nbsp; {{row.CA_NAME}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Cantidad: &nbsp;&nbsp; {{row.MOV_AMOUNT}}  " >
             </o-list-item-text>
           </o-list-item>
         </o-list>
-      </div>
+      
         
          </span>
     </div>
