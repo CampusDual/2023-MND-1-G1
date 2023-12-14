@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef } from "@angular/core";
 import * as moment from "moment";
 import { Expression, FilterExpressionUtils } from "ontimize-web-ngx";
 import { ViewChildren, QueryList, ViewChild } from "@angular/core";
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { distinctUntilChanged, tap } from 'rxjs/operators';
 import {
   DiscreteBarChartConfiguration,
   OChartComponent,
@@ -16,6 +18,17 @@ export class ExpensesHomeComponent implements OnInit {
   @ViewChildren("expenseTable") expenseTable: QueryList<any>;
   @ViewChild("discreteBar", { static: false }) discreteBar: OChartComponent;
 
+  Breakpoints = Breakpoints;
+  currentBreakpoint: string = '';
+
+  readonly breakpoint$ = this.breakpointObserver
+    .observe([Breakpoints.Large, Breakpoints.Medium, Breakpoints.Small, '(min-width: 500px)'])
+    .pipe(
+      tap(value => console.log(value)),
+      distinctUntilChanged()
+    );
+
+
   public selected = {};
   public date = [];
   sharedDataObject: { data: any[] } | null = { data: [] };
@@ -23,9 +36,25 @@ export class ExpensesHomeComponent implements OnInit {
   showChart: boolean = true;
   //externalData : any[] | null = null;
 
-  constructor() {}
+  constructor(private breakpointObserver: BreakpointObserver) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.breakpoint$.subscribe(() =>
+      this.breakpointChanged()
+    );
+  }
+
+  private breakpointChanged() {
+    if (this.breakpointObserver.isMatched(Breakpoints.Large)) {
+      this.currentBreakpoint = Breakpoints.Large;
+    } else if (this.breakpointObserver.isMatched(Breakpoints.Medium)) {
+      this.currentBreakpoint = Breakpoints.Medium;
+    } else if (this.breakpointObserver.isMatched(Breakpoints.Small)) {
+      this.currentBreakpoint = Breakpoints.Small;
+    } else if (this.breakpointObserver.isMatched('(min-width: 500px)')) {
+      this.currentBreakpoint = '(min-width: 500px)';
+    }
+  }
 
   clearFilters(event) {
     this.expenseTable.first.reloadData();
