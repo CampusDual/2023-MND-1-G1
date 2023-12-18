@@ -22,7 +22,7 @@ export class ExpensesHomeComponent implements OnInit {
   currentBreakpoint: string = '';
 
   readonly breakpoint$ = this.breakpointObserver
-    .observe([Breakpoints.Large, Breakpoints.Medium, Breakpoints.Small, '(min-width: 200px)'])
+    .observe([Breakpoints.Large, '(min-width: 200px)'])
     .pipe(
       tap(value => console.log(value)),
       distinctUntilChanged()

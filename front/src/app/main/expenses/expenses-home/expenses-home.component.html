@@ -135,8 +135,15 @@
         </div>
       </div> </span>
       <span class="custom" *ngSwitchCase="'(min-width: 200px)'">  
+        <o-form-layout-manager mode="dialog">
+          <o-form-layout-dialog-options
+            width="880px"
+            height="580px"
+          ></o-form-layout-dialog-options>
+        
           <o-list #list attr="expenseslist" title="Gastos" service="movements" entity="expensesForCategories"
-          keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME">
+          keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME" refresh-button="false" insert-button="true">
+          
           <o-list-item *ngFor="let row of list.dataArray">
             <div class="custom-card">
               <!-- <div class="imagediv"><img class="imagencard" src="../../assets/images/logo/Cerdito/Cerdito.png" alt=""></div> -->
@@ -146,8 +153,9 @@
               <span>Fecha: {{row.MOV_DATE | date:'dd/MM/yyyy'}}</span>
             </div>
           </o-list-item>
+        
         </o-list>
-      
+      </o-form-layout-manager>
         
          </span>
     </div>

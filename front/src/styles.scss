@@ -25,7 +25,19 @@ margin-top: 10px;
   align-content:flex-end;
   margin-block: 10px;
 }
-
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+  background-color: rgb(123, 223, 160);
+  width: 30px;
+  height: 30px;
+  
+}
+.mat-fab .mat-button-wrapper {
+    padding: 0px 0 !important;
+    display: grid !important;
+    line-height: 24px;
+    margin: 0px !important;
+    justify-items: center;
+}
 
 
 
@@ -43,6 +55,7 @@ margin-top: 10px;
 .o-button button.mat-stroked-button {
   border: none;
 }
+
 
 @-moz-document url-prefix() {
   .mat-select-empty,
