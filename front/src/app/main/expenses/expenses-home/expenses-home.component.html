@@ -70,6 +70,21 @@
     </o-form>
   </div>
 
+    <!--Chart-->
+    <div class="chart-container">
+      <div class="table-title">
+        <h3>{{ "EXPENSES_CHART" | oTranslate }}</h3>
+      </div>
+      <div class="expense-table">
+        <app-expenses-chart
+          *ngIf="showChart; else showMessage"
+          [sharedDataObject]="sharedDataObject"
+        ></app-expenses-chart>
+        <ng-template #showMessage>
+          <p>{{ "CHART_FILTER_BY_COLUMN.EMPTY_VALUE" | oTranslate }}</p>
+        </ng-template>
+      </div>
+    </div>
 
   <!--Tabla y chart-->
   <div class="table-chart-container">
@@ -142,15 +157,15 @@
           ></o-form-layout-dialog-options>
         
           <o-list #list attr="expenseslist" title="Gastos" service="movements" entity="expensesForCategories"
-          keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME" refresh-button="false" insert-button="true">
+          keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME" refresh-button="false" insert-button="true" delete-button="no">
           
           <o-list-item *ngFor="let row of list.dataArray">
             <div class="custom-card">
               <!-- <div class="imagediv"><img class="imagencard" src="../../assets/images/logo/Cerdito/Cerdito.png" alt=""></div> -->
-              <span >Concepto: {{row.MOV_CONCEPT}}</span>
-              <span>Categoria: {{row.CA_NAME}}</span>
-              <span>Importe: {{row.MOV_AMOUNT}}</span>
-              <span>Fecha: {{row.MOV_DATE | date:'dd/MM/yyyy'}}</span>
+              <span class="concept-element">{{row.MOV_CONCEPT}}</span>
+              <span class="concept-name">{{row.CA_NAME}}</span>
+              <span class="concept-amount">{{row.MOV_AMOUNT}}€</span>
+              <span class="concept-date">{{row.MOV_DATE | date:'dd/MM/yyyy'}}</span>
             </div>
           </o-list-item>
         
@@ -160,21 +175,5 @@
          </span>
     </div>
 
-
-    <!--Chart-->
-    <div class="chart-container">
-      <div class="table-title">
-        <h3>{{ "EXPENSES_CHART" | oTranslate }}</h3>
-      </div>
-      <div class="expense-table">
-        <app-expenses-chart
-          *ngIf="showChart; else showMessage"
-          [sharedDataObject]="sharedDataObject"
-        ></app-expenses-chart>
-        <ng-template #showMessage>
-          <p>{{ "CHART_FILTER_BY_COLUMN.EMPTY_VALUE" | oTranslate }}</p>
-        </ng-template>
-      </div>
-    </div>
   </div>
 </div>
