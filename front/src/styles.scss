@@ -8,13 +8,19 @@
 }
 
 
+
 .o-list-item {
   border-radius: 8px;
 background: rgba(255, 144, 133, 0.45);
 margin-top: 10px;
 }
+.o-list-container{
+width: 89vw !important;
 
-.concept-amount{
+}
+
+
+#amount{
 color: #000;
 text-align: center;
 font-family: Helvetica;
@@ -24,7 +30,7 @@ font-weight: 700;
 line-height: normal;
 }
 
-.concept-date{
+#date{
   color: #000;
   text-align: center;
   font-family: sans-serif;
@@ -40,14 +46,23 @@ line-height: normal;
   margin-right: 20px;
   
 }
+.element{
+  align-self: center;
+  text-align: center;
+}
 .custom-card{
   align-content:flex-end;
   margin-block: 10px;
+  align-self: center5;
 }
 .mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
   background-color: rgb(123, 223, 160);
   width: 30px;
   height: 30px;
+  
+}
+.table-container{
+  width: 90vw;
   
 }
 .mat-fab .mat-button-wrapper {
@@ -58,13 +73,11 @@ line-height: normal;
     justify-items: center;
 }
 
-.table-chart-container{
-  grid-template-rows: 0fr 0fr !important;
-}
 
 .container-margin { //añadir ingresos y gastos
   margin: 0 20px;
 }
+
 .input-padding {
   margin-right: 15px;
 }

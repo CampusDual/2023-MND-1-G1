@@ -71,7 +71,7 @@
   </div>
 
     <!--Chart-->
-    <div class="chart-container">
+    <div class="chart-container" >
       <div class="table-title">
         <h3>{{ "EXPENSES_CHART" | oTranslate }}</h3>
       </div>
@@ -87,19 +87,19 @@
     </div>
 
   <!--Tabla y chart-->
-  <div class="table-chart-container">
+  <div class="table-chart-container" >
     <!--Tabla-->
     <div class="container" [ngSwitch]="currentBreakpoint">
-      <span class="large" *ngSwitchDefault>    <div class="table-container">
+      <span class="lage" *ngSwitchDefault>    <div class="table-container">
         <div class="table-title">
           <h3>{{ "EXPENSE_LIST" | oTranslate }}</h3>
         </div>
         <div class="expense-table">
           <o-form-layout-manager mode="dialog">
             <o-form-layout-dialog-options
-              width="880px"
-              height="580px"
-            ></o-form-layout-dialog-options>
+               width="880px"
+              height="580px" >
+            </o-form-layout-dialog-options>
             <o-table
               #expenseTable
               attr="expenseTable"
@@ -149,7 +149,7 @@
           </o-form-layout-manager>
         </div>
       </div> </span>
-      <span class="custom" *ngSwitchCase="'(min-width: 200px)'">  
+      <span class="small" *ngSwitchCase="Breakpoints.Small">  
         <o-form-layout-manager mode="dialog">
           <o-form-layout-dialog-options
             width="880px"
@@ -160,12 +160,11 @@
           keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME" refresh-button="false" insert-button="true" delete-button="no">
           
           <o-list-item *ngFor="let row of list.dataArray">
-            <div class="custom-card">
-              <!-- <div class="imagediv"><img class="imagencard" src="../../assets/images/logo/Cerdito/Cerdito.png" alt=""></div> -->
-              <span class="concept-element">{{row.MOV_CONCEPT}}</span>
-              <span class="concept-name">{{row.CA_NAME}}</span>
-              <span class="concept-amount">{{row.MOV_AMOUNT}}€</span>
-              <span class="concept-date">{{row.MOV_DATE | date:'dd/MM/yyyy'}}</span>
+            <div class="custom-card" fxFlex>
+              <span class="element" fxFlex="25">{{row.MOV_CONCEPT}}</span>
+              <span class="element"fxFlex="25">{{row.CA_NAME}}</span>
+              <span id="amount" class="element"fxFlex="25">{{row.MOV_AMOUNT}}€</span>
+              <span id="date" class="element"fxFlex="25">{{row.MOV_DATE | date:'dd/MM/yyyy'}}</span>
             </div>
           </o-list-item>
         
