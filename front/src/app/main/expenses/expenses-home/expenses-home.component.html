@@ -115,7 +115,7 @@
               sort-columns="MOV_DATE:DESC"
               resizable="false"
             >
-              <o-table-paginator page-size-options="14"></o-table-paginator>
+              <o-table-paginator page-size-options="15"></o-table-paginator>
               <o-table-column
                 attr="CA_NAME"
                 title="CATEGORY"
@@ -157,12 +157,12 @@
           ></o-form-layout-dialog-options>
         
           <o-list #list attr="expenseslist" title="Gastos" service="movements" entity="expensesForCategories"
-          keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME" refresh-button="false" insert-button="true" delete-button="no">
-          
+          keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME" refresh-button="false" insert-button="true" delete-button="no"
+          pagination-controls="flase" page-size-options="1000">
           <o-list-item *ngFor="let row of list.dataArray">
             <div class="custom-card" fxFlex>
-              <span class="element" fxFlex="25">{{row.MOV_CONCEPT}}</span>
-              <span class="element"fxFlex="25">{{row.CA_NAME}}</span>
+              <span class="element" fxFlex="25" max-width="10vw">{{row.MOV_CONCEPT}}</span>
+              <span class="element"fxFlex="25" >{{row.CA_NAME}}</span>
               <span id="amount" class="element"fxFlex="25">{{row.MOV_AMOUNT}}€</span>
               <span id="date" class="element"fxFlex="25">{{row.MOV_DATE | date:'dd/MM/yyyy'}}</span>
             </div>

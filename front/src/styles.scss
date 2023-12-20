@@ -8,13 +8,13 @@
 }
 @media (max-width: 600px) {
   .form-filter-container-expense{
-    width: 80vw !important;
+    width: 55vw !important;
     }
     .btn-filter{
       justify-content: space-around !important;
     }
     .items-filter{
-    width: 70vw !important;
+    width: 55vw !important;
     font-size: 3vw;
     }
     .o-button{
@@ -22,17 +22,32 @@
     font-size: 3vw;
     }
     .o-list-container{
-    width: 85vw !important;
+    width: 55vw !important;
     
     }
+    .mat-list-item-content{
+      padding: 0px 0px !important;
+    }
+    .table-chart-container{
+      grid-template-columns: 0fr !important;
+      grid-template-rows: 0fr 0fr !important;
+    }
+    .o-search-input{
+      width: 20vw;
+    }
+    
     .element{
+      
       font-size: 3vw;
     }
     .o-search-input .quickFilter .mat-form-field .mat-form-field-wrapper {
-      padding-bottom: 0;
+     
       width: 20vw;
+
     }
+    
     #amount{
+      
       color: #000;
       text-align: center;
       font-family: Helvetica;
@@ -43,6 +58,7 @@
       }
       
       #date{
+        
         color: #000;
         text-align: center;
         font-family: sans-serif;
@@ -51,12 +67,30 @@
         font-weight: 400;
         line-height: normal;
       }
-      .chart-container{
-        width: 85vw;
+      .mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+        background-color: rgb(123, 223, 160);
+        width: 30px;
+        height: 30px;
+        position: fixed;
+        top: 10px;
+        right: 10px;
       }
+      .custom{
+        width: 75vw !important;
+      
+        }
+        
+        
+      
+}
+.custom{
+width: 80vw;
 }
 
-
+.o-list-container{
+  width: 85vw ;
+  
+  }
 .o-list-item {
   border-radius: 8px;
 background: rgba(255, 144, 133, 0.45);
@@ -86,7 +120,9 @@ margin-top: 10px;
   background-color: rgb(123, 223, 160);
   width: 30px;
   height: 30px;
-  
+  position: relative;
+  top: 50px;
+  left: 0px;
 }
 
 .mat-fab .mat-button-wrapper {
