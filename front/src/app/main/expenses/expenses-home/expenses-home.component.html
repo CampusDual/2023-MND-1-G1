@@ -157,8 +157,8 @@
           ></o-form-layout-dialog-options>
         
           <o-list #list attr="expenseslist" title="Gastos" service="movements" entity="expensesForCategories"
-          keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME" refresh-button="false" insert-button="true" delete-button="no"
-          pagination-controls="flase" page-size-options="1000">
+          keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME" refresh-button="no" insert-button="true" delete-button="no"
+          pagination-controls="true" page-size-options="10;20;50;100">
           <o-list-item *ngFor="let row of list.dataArray">
             <div class="custom-card" fxFlex>
               <span class="element" fxFlex="25" max-width="10vw">{{row.MOV_CONCEPT}}</span>

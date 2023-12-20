@@ -11,7 +11,11 @@
     width: 55vw !important;
     }
     .btn-filter{
+      margin-top: 10px;
       justify-content: space-around !important;
+    }
+    .filter-container{
+      max-height: 15vh;
     }
     .items-filter{
     width: 55vw !important;
@@ -35,16 +39,54 @@
     .o-search-input{
       width: 20vw;
     }
-    
+    .expense-table{
+      max-height: 60vh;
+    }
+    .mat-form-field-infix{
+      width: 100px !important;
+    }
+    .mat-dialog-container{
+      max-height: 40vh !important;
+
+    }
+   .btn-cancel-cont .ng-star-inserted{
+    width: 10vw !important;
+   }
+   .mat-option-text {
+    color: black !important;
+   }
+   .mat-datepicker-content-touch .mat-calendar {
+    width: 40vw !important;
+    height: 40vh !important;
+   }
+   .o-data-toolbar .title{
+    display: unset!important;
+  
+    margin-right: 10px !important;
+   }
+   .o-data-toolbar .quickFilter{
+    position: initial;
+        justify-content: center;
+    max-width: 0px !important;
+
+   }
+   .o-data-toolbar{
+    width: 95% !important;
+   }
+   .o-form-layout-dialog-overlay .mat-dialog-container .mat-dialog-content.form-layout-dialog-container {
+   padding-top: 0px !important;
+    max-height: 60vh !important;
+  height: 40vh !important;
+}
+    .mat-dialog-actions button, .o-form .o-form-toolbar button {
+      margin: 0 4px !important;
+      width: 5vw !important;
+  }
     .element{
       
       font-size: 3vw;
     }
-    .o-search-input .quickFilter .mat-form-field .mat-form-field-wrapper {
-     
-      width: 20vw;
-
-    }
+    
     
     #amount{
       
@@ -83,6 +125,33 @@
         
       
 }
+.element{
+      
+  font-size: 3vw;
+}
+
+
+#amount{
+  
+  color: #000;
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 3vw;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  }
+  
+  #date{
+    
+    color: #000;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 3vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 .custom{
 width: 80vw;
 }
