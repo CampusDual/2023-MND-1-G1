@@ -1,5 +1,26 @@
 <o-app-layout show-language-selector="yes" opened-sidenav-image="\assets\images\logo\Cerdito\cerditop.png"
-  closed-sidenav-image="\assets\images\logo\Cerdito\cerditop.png" >
+  closed-sidenav-image="\assets\images\logo\Cerdito\cerditop.png" mode="desktop">
   <o-user-info-configuration show-settings="false"></o-user-info-configuration>
   <router-outlet></router-outlet>
+  <footer class="pie"><span>
+    <a routerLink="/main/home">
+      <button class="casa"><img  class="iconoMenu" src="../assets/images/casita.png" alt=""></button>
+    </a>
+  </span>
+  <span><a routerLink="/main/expenses">
+  <button><img  class="iconoMenu" src="../assets/images/gastos.png" alt="">
+  </button>
+  </a></span>
+  <span><a routerLink="/main/incomes">
+  <button><img  class="iconoMenu" src="../assets/images/ingresos.png" alt=""></button>
+  </a></span>
+  <span><a routerLink="/main/groups">
+  <button><img  class="iconoMenu" src="../assets/images/grupos.png" alt=""></button>
+  </a></span>
+  <span><a routerLink="/main/goals">
+  <button><img  class="iconoMenu" src="../assets/images/presupuestos.png" alt=""></button>
+  </a></span>
+  
+  </footer>
 </o-app-layout>
+

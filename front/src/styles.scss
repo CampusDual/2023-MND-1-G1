@@ -7,6 +7,7 @@
   --var-goals-color: rgba(173, 107, 169);
 }
 @media (max-width: 600px) {
+
   .form-filter-container-expense{
     width: 55vw !important;
     }
@@ -73,11 +74,7 @@
    .o-data-toolbar{
     width: 95% !important;
    }
-   .o-form-layout-dialog-overlay .mat-dialog-container .mat-dialog-content.form-layout-dialog-container {
-   padding-top: 0px !important;
-    max-height: 60vh !important;
-  height: 40vh !important;
-}
+
     .mat-dialog-actions button, .o-form .o-form-toolbar button {
       margin: 0 4px !important;
       width: 5vw !important;
@@ -121,10 +118,41 @@
         width: 75vw !important;
       
         }
+      .pie{
+       
+          height: 48px;
+          flex-shrink: 0;
+          background-color: #FFDDC7;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          margin-left: 0px !important;
+        }
         
-        
+        .mat-sidenav{
+          display: none !important;
+        } 
+        .application-layout-content-wrapper {
+          padding: 0px !important;
+        }
+        body .o-app-sidenav .o-app-sidenav-container.o-app-sidenav-mode-desktop:not(.opened) .o-app-sidenav-content.mat-drawer-content{
+              transform: none !important;
+              margin-right: 0px !important;
+        }
+       
+      
+       
+       
       
 }
+
+
+.iconoMenu{
+ max-width: 25px;
+ max-height: 25px;
+}
+
+
 .element{
       
   font-size: 3vw;
@@ -258,6 +286,7 @@ mat-dialog-container {
   padding-bottom: 20px; //espacio icono y botones margen
 }
 .o-app-header nav{
+ 
   background-color: rgba(255, 221, 199, 1);
 }
 .o-form-layout-tabgroup .mat-tab-group .mat-tab-body-wrapper {
