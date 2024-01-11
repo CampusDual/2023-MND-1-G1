@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import * as moment from "moment";
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { distinctUntilChanged, tap } from 'rxjs/operators';
+import { DiscreteBarChartConfiguration, OChartComponent } from "ontimize-web-ngx-charts";
 import { Expression, FilterExpressionUtils } from "ontimize-web-ngx";
-import { ViewChildren, QueryList } from "@angular/core";
+import { ViewChildren, QueryList, ViewChild } from "@angular/core";
 
 @Component({
   selector: "app-incomes-home",
@@ -10,21 +12,51 @@ import { ViewChildren, QueryList } from "@angular/core";
 })
 export class IncomesHomeComponent implements OnInit {
   @ViewChildren("incomeTable") incomeTable: QueryList<any>;
+  @ViewChild("discreteBar", { static: false }) discreteBar: OChartComponent;
+
+  Breakpoints = Breakpoints;
+  currentBreakpoint: string = '';
+
+  readonly breakpoint$ = this.breakpointObserver
+    .observe([Breakpoints.Small,Breakpoints.Medium])
+    .pipe(
+      tap(value => console.log(value)),
+      distinctUntilChanged()
+    );
+
   public selected = {};
   public date = [];
-  showChart: boolean = true;
   sharedDataObject: { data: any[] } | null = { data: [] };
-  constructor() {
-    
+  protected chartParameters: DiscreteBarChartConfiguration;
+  showChart: boolean = true;
+
+  constructor(private breakpointObserver: BreakpointObserver) { }
+
+  ngOnInit() {
+    // Obtener el tamaño inicial de la pantalla al cargar la página
+    this.currentBreakpoint = this.breakpointObserver.isMatched(Breakpoints.Medium)
+      ? Breakpoints.Medium
+      : Breakpoints.Small;
+
+    this.breakpoint$.subscribe(() =>
+      this.breakpointChanged()
+    );
   }
 
-  ngOnInit() {}
+  private breakpointChanged() {
+    if (this.breakpointObserver.isMatched(Breakpoints.Medium)) {
+      this.currentBreakpoint = Breakpoints.Medium;
+    } else if (this.breakpointObserver.isMatched(Breakpoints.Small)) {
+      this.currentBreakpoint = Breakpoints.Small;
+    }
+  }
+
+  clearFilters(event) {
+    this.incomeTable.first.reloadData();
+  }
 
   getValue() {
     return this.selected;
-  }
-  clearFilters() {
-    this.incomeTable.first.reloadData();
   }
 
   public createFilter(values: Array<{ attr; value }>): Expression {
@@ -85,15 +117,14 @@ export class IncomesHomeComponent implements OnInit {
       return null;
     }
   }
+
   public dataFiltered(event) {
     this.sharedDataObject = { data: event };
     console.log(this.sharedDataObject);
 
     if (event.length === 0) {
-      // Cuando no haya nada que mostrar
       this.showChart = false;
     } else {
-      // Cuando si
       this.showChart = true;
     }
   }

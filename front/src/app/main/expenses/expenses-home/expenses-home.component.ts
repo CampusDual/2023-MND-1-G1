@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef } from "@angular/core";
-import * as moment from "moment";
 import { Expression, FilterExpressionUtils } from "ontimize-web-ngx";
 import { ViewChildren, QueryList, ViewChild } from "@angular/core";
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -22,31 +21,34 @@ export class ExpensesHomeComponent implements OnInit {
   currentBreakpoint: string = '';
 
   readonly breakpoint$ = this.breakpointObserver
-    .observe([Breakpoints.Small,Breakpoints.Large])
+    .observe([Breakpoints.Small,Breakpoints.Medium, Breakpoints.Large])
     .pipe(
       tap(value => console.log(value)),
       distinctUntilChanged()
     );
-
 
   public selected = {};
   public date = [];
   sharedDataObject: { data: any[] } | null = { data: [] };
   protected chartParameters: DiscreteBarChartConfiguration;
   showChart: boolean = true;
-  //externalData : any[] | null = null;
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit() {
+    // Obtener el tamaño inicial de la pantalla al cargar la página
+    this.currentBreakpoint = this.breakpointObserver.isMatched(Breakpoints.Medium)
+      ? Breakpoints.Medium
+      : Breakpoints.Small;
+
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
   }
 
   private breakpointChanged() {
-    if (this.breakpointObserver.isMatched(Breakpoints.Large)) {
-      this.currentBreakpoint = Breakpoints.Large;
+    if (this.breakpointObserver.isMatched(Breakpoints.Medium)) {
+      this.currentBreakpoint = Breakpoints.Medium;
     } else if (this.breakpointObserver.isMatched(Breakpoints.Small)) {
       this.currentBreakpoint = Breakpoints.Small;
     }
@@ -124,10 +126,8 @@ export class ExpensesHomeComponent implements OnInit {
     console.log(this.sharedDataObject);
 
     if (event.length === 0) {
-      // Cuando no haya nada que mostrar
       this.showChart = false;
     } else {
-      // Cuando si
       this.showChart = true;
     }
   }

@@ -119,13 +119,14 @@
       
         }
       .pie{
-       
-          height: 48px;
+       display: block !important;
+          height: 48px !important;
           flex-shrink: 0;
           background-color: #FFDDC7;
           position: fixed;
           bottom: 0;
-          width: 100%;
+          width: 100vw;
+          text-align: center;
           margin-left: 0px !important;
         }
         
@@ -139,17 +140,59 @@
               transform: none !important;
               margin-right: 0px !important;
         }
+        .spanButton{
+          margin-top: 5px !important;
+          margin-left: 5vw !important;
+          margin-right: 5vw !important;
+          margin-bottom: 5px !important;
+        }
+        .button{
+          
+          width: 5vw;
+          height: 5vw;
+          max-width: 20px !important;
+          max-height: 20px !important;
+        }
+        .button, .mat-dialog-container{
+          background-color: #FFDDC7  !important;
+        }
+        .iconoMenu{
+          margin-top: 1vw !important;
+          width: 5vw;
+          height: 5vw;
+          max-width: 20px !important;
+          max-height: 20px !important;
+        }
+        .o-form-layout-tabgroup .mat-tab-group .mat-tab-body-wrapper{
+          max-height: 80vh !important;
+        }
+        
        
+
       
-       
-       
-      
+}
+.itemListIncomes{
+  border-radius: 8px;
+  background-color: rgba(91, 226, 137, 0.54) !important;
+  margin-top: 10px;
+}
+
+button::after{
+  background-color: #0073ff !important; /* Un color más oscuro para resaltar el botón activo */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.pie{
+  display: none ;
 }
 
 
 .iconoMenu{
  max-width: 25px;
  max-height: 25px;
+}
+.footer{
+  display: none !important;
 }
 
 
@@ -269,8 +312,13 @@ margin-top: 10px;
 }
 button,
 mat-dialog-container {
+
+  background-color: #FFDDC7;
   border-radius: 10px !important;
+  border: 0px;
+  
 }
+
 .md-drppicker .ranges button {
   border-radius: 0 !important;
 }
