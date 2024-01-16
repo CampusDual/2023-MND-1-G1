@@ -171,8 +171,8 @@
           >
             <o-list-item class="itemListIncomes" *ngFor="let row of list.dataArray">
               <div class="custom-card" fxFlex>
+                <span class="element"><img class="custom-cardImage" [src]="getImagePath(row.CA_ID)" alt="Category Image"></span>
                 <span class="element" fxFlex="25" max-width="10vw">{{ row.MOV_CONCEPT}}</span>
-                <span class="element" fxFlex="25">{{ row.CA_NAME }}</span>
                 <span id="amount" class="element" fxFlex="25">{{ row.MOV_AMOUNT }}€</span>
                 <span id="date" class="element" fxFlex="25">{{ row.MOV_DATE | date:'dd/MM/yyyy' }}</span>
               </div>

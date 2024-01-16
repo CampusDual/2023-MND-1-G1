@@ -38,7 +38,9 @@ export class ExpensesHomeComponent implements OnInit {
   ngOnInit() {
     // Obtener el tamaño inicial de la pantalla al cargar la página
     this.currentBreakpoint = this.breakpointObserver.isMatched(Breakpoints.Medium)
-      ? Breakpoints.Medium
+    ? Breakpoints.Medium
+    : this.breakpointObserver.isMatched(Breakpoints.Large)
+      ? Breakpoints.Large
       : Breakpoints.Small;
 
     this.breakpoint$.subscribe(() =>
@@ -60,6 +62,50 @@ export class ExpensesHomeComponent implements OnInit {
 
   getValue() {
     return this.selected;
+  }
+  getImagePath(categoryId: string): string {
+    console.log('categoryId:', categoryId);
+  
+    switch (categoryId.toString()) {
+      case '1':
+        return '../assets/images/suscripciones.png';
+      case '2':
+        return '../assets/images/gasolina.png'; 
+      case '3':
+        return '../assets/images/super.png'; 
+      case '4':
+        return '../assets/images/alquiler.png'; 
+      case '5':
+        return '../assets/images/seguro.png'; 
+      case '6':
+        return '../assets/images/hipoteca.png'; 
+      case '7':
+        return '../assets/images/tijeras.png'; 
+      case '8':
+        return '../assets/images/entretenimiento.png'; 
+      case '9':
+        return '../assets/images/restaurante.png'; 
+      case '10':
+        return '../assets/images/ong.png'; 
+      case '11':
+        return '../assets/images/comisiones.png'; 
+      case '12':
+        return '../assets/images/tv.png'; 
+      case '13':
+        return '../assets/images/perfume.png'; 
+      case '14':
+        return '../assets/images/gimnasio.png'; 
+      case '15':
+        return '../assets/images/taxi.png'; 
+      case '16':
+        return '../assets/images/regalo.png'; 
+      case '17':
+        return '../assets/images/Hoteles.png';
+     
+      default:
+        return '../assets/images/no-image.png'; 
+    }
+    
   }
 
   public createFilter(values: Array<{ attr; value }>): Expression {
@@ -106,6 +152,7 @@ export class ExpensesHomeComponent implements OnInit {
         }
       }
     });
+    
 
     if (filters.length > 0) {
       const filterExpression = filters.reduce((exp1, exp2) =>

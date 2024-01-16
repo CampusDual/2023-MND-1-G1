@@ -35,7 +35,9 @@ export class IncomesHomeComponent implements OnInit {
   ngOnInit() {
     // Obtener el tamaño inicial de la pantalla al cargar la página
     this.currentBreakpoint = this.breakpointObserver.isMatched(Breakpoints.Medium)
-      ? Breakpoints.Medium
+    ? Breakpoints.Medium
+    : this.breakpointObserver.isMatched(Breakpoints.Large)
+      ? Breakpoints.Large
       : Breakpoints.Small;
 
     this.breakpoint$.subscribe(() =>
@@ -57,6 +59,18 @@ export class IncomesHomeComponent implements OnInit {
 
   getValue() {
     return this.selected;
+  }
+  getImagePath(categoryId: string): string {
+    console.log('categoryId:', categoryId);
+  
+    switch (categoryId.toString()) {
+      case '1':
+        return '../assets/images/suscripciones.png';
+      case '2':
+        return '../assets/images/gasolina.png';
+      default:
+        return '../assets/images/no-image.png'; 
+    }
   }
 
   public createFilter(values: Array<{ attr; value }>): Expression {
