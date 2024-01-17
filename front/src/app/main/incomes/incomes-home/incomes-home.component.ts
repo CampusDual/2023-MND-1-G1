@@ -64,10 +64,10 @@ export class IncomesHomeComponent implements OnInit {
     console.log('categoryId:', categoryId);
   
     switch (categoryId.toString()) {
-      case '1':
-        return '../assets/images/suscripciones.png';
-      case '2':
-        return '../assets/images/gasolina.png';
+      case '18':
+        return '../assets/images/nomina.png';
+      case '19':
+        return '../assets/images/otros.png';
       default:
         return '../assets/images/no-image.png'; 
     }

@@ -27,7 +27,7 @@
     font-size: 3vw;
     }
     .o-list-container{
-    width: 55vw !important;
+    width: 90vw !important;
     
     }
     .mat-list-item-content{
@@ -171,8 +171,34 @@
 .custom-cardImage{
   max-width: 20px;
   max-height: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
       
+}
+.form-filter-container-expense{
+  max-width: 90vw;
+}
+.form-filter-container-income{
+  max-width: 90vw;
+}
+
+.chart-container{
+  max-width: 90vw;
+ 
+}
+.filter-container{
+  max-width: 90vw;
+}
+.table-container{
+ max-width: 90vw;
+  width: 90vw !important;
+}
+.custom-cardImage{
+  max-width: 20px;
+  max-height: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .itemListIncomes{
   border-radius: 8px;
@@ -231,9 +257,9 @@ width: 80vw;
 }
 
 .o-list-container{
-  width: 85vw ;
-  
+  width: 90vw ;
   }
+
 .o-list-item {
   border-radius: 8px;
 background: rgba(255, 144, 133, 0.45);
@@ -244,9 +270,8 @@ margin-top: 10px;
 .custom-card,span{
   display:inline-block;
   position: relative;
-  
-  
 }
+
 .o-data-toolbar{
   width: 85vw;
 }
@@ -257,7 +282,8 @@ margin-top: 10px;
 .custom-card{
   align-content:flex-end;
   margin-block: 10px;
-  align-self: center5;
+  align-self: center;
+  justify-content: space-evenly !important;
 }
 .mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
   background-color: rgb(123, 223, 160);
@@ -312,6 +338,10 @@ margin-top: 10px;
 }
 .goal-table thead {
   background-color: var(--var-goals-color);
+}
+.mat-dialog-content {
+  overflow: unset !important;
+  padding-top: 0px !important;
 }
 button,
 mat-dialog-container {
